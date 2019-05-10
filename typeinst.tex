@@ -78,30 +78,7 @@ Aca deberiamos escribir el resumen que el profe quiere
 
 
 
-\subsection{1}
-% https://www.easycrypt.info/trac/#no1
-EasyCrypt is a toolset for reasoning about relational properties of probabilistic computations with adversarial code. Its main application is the construction and verification of game-based cryptographic proofs. The development of EasyCrypt was initiated in 2009, and the initial prototype was used to prove the security of several constructions, including the Cramer-Shoup encryption scheme, the Merkle-Damgaard iterative hash function design, and of the ZAEP encryption scheme.
 
-
-Starting from 2012, we have performed a complete reimplementation of the initial prototype, with the goal to overcome several of its limitations. The goals of the reimplementation were three-fold: first, consolidate the prototype into a robust platform that can be maintained and extended with reasonable effort; second, provide a versatile platform that supports automated proofs but also allows users to perform complex interactive proofs that interleave program verification and formalization of mathematics, which are intimately intertwined when formalizing cryptographic proofs; third, develop and implement the necessary foundations required to carry some standard cryptographic reasonings that were not supported by the initial prototype, such as hybrid arguments and simulation-based security proofs. To achieve its goals, EasyCrypt implements a probabilistic Hoare logic pHL for bounding the probability of post-conditions, and embeds pRHL and pHL into an ambient logic that can for instance be used to perform hybrid arguments. In addition, it implements a module system and a theory mechanism that support compositional proofs.
-
-These developments have expanded significantly the scope of potential applications of EasyCrypt and enabled the formalization of examples that were previously out of reach of the initial prototype. For instance, we have formalized the security of two protocols based on garbled circuits: Yao's secure function evaluation protocol and Gennaro-Gentry-Parno verifiable computation protocol. Moreover, we have formalized a proof of security for authenticated key-exchange protocols, and derived proofs under weaker assumptions for the NAXOS and NETS protocols.
-
-EasyCrypt has been initially developed by the IMDEA Software Institute and Inria. It is now developed at the IMDEA Software Institute, Inria and École Polytechnique.
-
-
-\subsection{2}
-% https://link.springer.com/chapter/10.1007/978-3-319-10082-1_6
-
-TUTORIAL
-
-Cryptography plays a key role in the security of modern communication and computer infrastructures; therefore, it is of paramount importance to design cryptographic systems that yield strong security guarantees. To achieve this goal, cryptographic systems are supported by security proofs that establish an upper bound for the probability that a resource-constrained adversary is able to break the cryptographic system. In most cases, security proofs are reductionist, i.e. they construct from an (arbitrary but computationally bounded) adversary that would break the security of the cryptographic construction with some reasonable probability another computationally bounded adversary that would break a hardness assumption with reasonable probability. This approach, known as provable security, is in principle able to deliver rigorous and detailed mathematical proofs. However, new cryptographic designs (and consequently their security analyses) are increasingly complex, and there is a growing emphasis on shifting from algorithmic descriptions to implementation-level descriptions that account for implementation details, recommendations from standards when they exist, and possibly side-channels. As a consequence, cryptographic proofs are becoming increasingly error-prone and difficult to check. One promising solution to address these concerns is to develop machine-checked frameworks that support the construction and automated verification of cryptographic systems. Although many such frameworks exist for the symbolic model of cryptography, comparatively little work has been done to develop machine-checked frameworks to reason directly in the computational model commonly used by cryptographers
-
-
-
-\subsection{3}
-% https://arxiv.org/abs/1806.07197
-Secure multi-party computation (MPC) is a general cryptographic technique that allows distrusting parties to compute a function of their individual inputs, while only revealing the output of the function. It has found applications in areas such as auctioning, email filtering, and secure teleconference. Given its importance, it is crucial that the protocols are specified and implemented correctly. In the programming language community it has become good practice to use computer proof assistants to verify correctness proofs. In the field of cryptography, EasyCrypt is the state of the art proof assistant. It provides an embedded language for probabilistic programming, together with a specialized logic, embedded into an ambient general purpose higher-order logic. It allows us to conveniently express cryptographic properties. EasyCrypt has been used successfully on many applications, including public-key encryption, signatures, garbled circuits and differential privacy. Here we show for the first time that it can also be used to prove security of MPC against a malicious adversary. We formalize additive and replicated secret sharing schemes and apply them to Maurer's MPC protocol for secure addition and multiplication. Our method extends to general polynomial functions. We follow the insights from EasyCrypt that security proofs can be often be reduced to proofs about program equivalence, a topic that is well understood in the verification of programming languages. In particular, we show that in the passive case the non-interference-based definition is equivalent to a standard game-based security definition. For the active case we provide a new NI definition, which we call input independence.
 
 \section{Paper Preparation}
 
@@ -148,8 +125,9 @@ Secure multi-party computation (MPC) is a general cryptographic technique that a
 
 
 \section{Lecturas Mariano}
-REFENCIAS DE ARITICULO 
-Computer-Aided Cryptographic Proofs
+
+\section{Aspectos tecnicos}
+5A
 EasyCrypt trabaja con enfoque basado en juego, cuyos principales actores son los ADVERSARIOS y los ORACULOS. Este contiene variables globales y una coleciones de procesos: Procesos definidos (Oraculos) y Procesos Abstractos (Adversarsios).
 
 Este posee 4 bases:
@@ -194,7 +172,7 @@ Easycrypt utiliza sistemas de reduccion abstractos sobre todo con el calculo lam
 -tipo de respuestas
 
 
-COMPARACION DE PROGRAMAS
+\section{COMPARACION DE PROGRAMAS}
 5A
 
 CeriCrypt Vs EasyCrypt:
@@ -259,10 +237,13 @@ external SMT solvers must be trusted.
 \end{tabular}
 \end{table}
 
+NO se encontro el hardware utilizado para esta prueba
 
 
+\section{Casos de estudios}
+IND-CPA  5A
 
-
+CMAC 6A
 
 A more ambitious goal
 would be to enhance EasyCrypt with a language for programming strategies, in
