@@ -21,7 +21,6 @@
 \usepackage{amssymb}
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
-
 \usepackage{url}
 \urldef{\mailsa}\path|{astradalucasezequiel@gmail.com|
 \urldef{\mailsb}\path|marianvanetta@hotmail.com}
@@ -148,7 +147,125 @@ Secure multi-party computation (MPC) is a general cryptographic technique that a
 \section{References}
 
 
+\section{Lecturas Mariano}
+REFENCIAS DE ARITICULO 
+Computer-Aided Cryptographic Proofs
+EasyCrypt trabaja con enfoque basado en juego, cuyos principales actores son los ADVERSARIOS y los ORACULOS. Este contiene variables globales y una coleciones de procesos: Procesos definidos (Oraculos) y Procesos Abstractos (Adversarsios).
+
+Este posee 4 bases:
+Lenguaje Programacional:
+El lenguaje utilizado es pWhile el cual es de tipado fuerte, imperativo probabilistico.:
+
+C ::= skip					nop
+	|V <- E					deterministic assignment
+	|V ← DE					probabilistic assignment
+	|if E then C else C		conditional
+	|while E do C			loop
+	|V ← P(E, . . . , E)	procedure call
+	|C; C					sequence
+Donde V = {variables identificadora}
+	P = {nombres de procesos}
+	E = {expresiones de prueba}
 
 
+Semantica Denotacional:
+Estos programas son interpretados como funciones, que se mapean en la memoria.
+
+Logica Relacional:
+Se utiliza el metodo probabilistico RELATIONAL HOARE LOGIC (pRHL):
+|= c 1 ∼ c 2 : Ψ ⇒ Φ	donde c1,c2 son programas probabilisticos y los simbolos corresponden a la pre y post condicion.
+Dentro de EasyCrypt la gramatica es la siguiente
+Ψ, Φ ::= e | ¬Φ | Ψ ∧ Φ | Ψ ∨ Φ | Ψ =⇒ Φ | ∀x. Φ | ∃x. Φ
+Donde la e corresponde a una expresion Booleana.
+
+Razonamiento probabilistico:
+Estos razonamientos se expresan en terminos de eventos probabilisticos y no como juicios de pRHL.
+
+9a
+
+Easycrypt utiliza sistemas de reduccion abstractos sobre todo con el calculo lambda, estos son:
+	-Call-by-name: reduce la exprecion de mas afuera de la izquierda salvo que este en forma normal devil. No es estricta.
+	-Call-by-value: reduce la expresion de mas adentro de la izquierda, salvo que este en forma normal devil. Es estricta.
+	-Applicative order: reduce la expresion de mas adentro a la izquierda, salvo que este de forma noraml. Es estricta.
+
+
+
+-no encuentro nada de estados, ni de abstraccion
+-tipo de respuestas
+
+
+COMPARACION DE PROGRAMAS
+5A
+
+CeriCrypt Vs EasyCrypt:
+En la parte programacional, EasyCrypt no posee bucles ni procesos recursivos. En el caso de las evidencias generadas, EasyCrypt es parcial por no tener generadores de pruebas COQ (se esta buscando agregar esta feature). Este tambien genera pruebas en base a la probabilidad y no maquinas totalmente probadas.
+
+\begin{table}
+  \caption{Comparación de EasyCrypt con CertyCrypt}
+  \label{tab:simple1}
+  \centering
+  \begin{tabular}{ |p{3.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|  }
+ \hline
+ & \multicolumn{2}{|c|}{CertiCrypt} & \multicolumn{2}{|c|}{EasyCrypt} & \multicolumn{2}{|c|}{Extracted} \\\cline{2-7}
+
+ &Lines&Time&Lines&Time&Lines&Time\\\cline{2-7}
+ \hline
+ ElGamal(IND-CPA) & 565 & 45s & 190 & 12s & 1130 & 23s\\
+ Hashed ElGamal(IND-CPA) & 1255  & 1m 5s & 243  & 33s & 1772 & 41s\\
+ Full-Domain Hash(EF-CMA) & 2035 & 5m 46s&  509 & 1m 26s & 2724 & 1m11s\\
+ Cramer-Shoup(IND-CCA) & n/a & n/a & 1637 & 5m 12s & 5504 & 3m14s\\
+ OAEP (IND-CPA) & 2451 & 3m24s & n/a & n/a & n/a & n/a\\
+ OAEP (IND-CPA) & 11162 & 37m32s & n/a & n/a & n/a & n/a\\
+ \hline
+\end{tabular}
+\end{table}
+
+Hardware para esta prueba: 2.8GHz Intel Core 2 Duo processor con 4GB de RAM en Mac OS X 10.6.7
+
+10A
+CRYPTHOL
+Rigour: The methodology should allow only valid proof steps. In practice, this
+requires formal verification, since humans err.
+Comprehensibility: The methodology should capture relevant proof ideas in a
+way that humans can also create, understand, and check. This means that
+although humans can trust the formally verified proofs, they do not have to,
+as they can in principle verify the proofs themselves.
+
+The semantic domain determines what notions and constructions can be
+expressed in the language. CertiCrypt and EasyCrypt support discrete subprobability distributions, all of which can be expressed using a probabilistic while
+language
+
+For EasyCrypt, we
+are neither aware of a consistency proof for its underlying logic, in particular for
+the module system, nor of a derivation of its probabilistic relational Hoare logic
+
+EasyCrypt
+does not have a small kernel, so the whole implementation in OCaml and the
+external SMT solvers must be trusted.
+
+
+\begin{table}
+  \caption{Comparación de EasyCrypt con CryptHOL}
+  \label{tab:simple1}
+  \centering
+  \begin{tabular}{ |p{4cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|  }
+ \hline
+ Cryptographic Algorithm & Security property & CryptHOL & EasyCrypt\\\cline{1-4}
+ \hline
+ RP-RF switching lemma &  & 120 & 448\\
+ Elgamal & IND-CPA & 49  & 68\\
+ Hashed Elgamal in the ROM & IND-CPA & 253 &  216\\
+ \hline
+\end{tabular}
+\end{table}
+
+
+
+
+
+
+A more ambitious goal
+would be to enhance EasyCrypt with a language for programming strategies, in
+the way proof assistants such as Coq allow users to program their own tactics.
 
 \end{document}
