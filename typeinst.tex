@@ -34,10 +34,10 @@
 \mainmatter  % start of an individual contribution
 
 % first the title is needed
-\title{Tool Analysis, EasyCrypt}
+\title{Analisis de Herramienta, EasyCrypt}
 
 % a short form should be given in case it is too long for the running head
-\titlerunning{Tool Analysis, EasyCrypt}
+\titlerunning{Analisis de Herramienta, EasyCrypt}
 
 % the name(s) of the author(s) follow(s) next
 %
@@ -48,7 +48,7 @@
 \author{Astrada Lucas Ezequiel
 \and Vanetta Mariano}
 %
-\authorrunning{Tool Analysis, EasyCrypt}
+\authorrunning{Analisis de Herramienta, EasyCrypt}
 % (feature abused for this document to repeat the title also on left hand pages) Aca sirve par el encabezado de pagina
 
 % the affiliations are given next; don't give your e-mail address
@@ -65,16 +65,70 @@
 % "llncs.dem" accompanies the document class "llncs.cls".
 %
 
-\toctitle{Tool Analysis}
-\tocauthor{EasyCrypt}
+\toctitle{Analisis de Herramienta, EasyCrypt}
 \maketitle
 
 
 \begin{abstract}
-Aca deberiamos escribir el resumen que el profe quiere
+The abstract should summarize the contents of the paper and should
+contain at least 70 and at most 150 words. It should be written using the idk.
 \end{abstract}
 
 \section{Introduccion}
+Trabajo Práctico de IS II 
+EasyCrypt
+
+Informe 
+
+1. Contexto de creación de la herramienta 
+$https://www.easycrypt.info/trac/no1$
+	¿Se creó en un contexto académico, industrial? 
+	¿Dónde? 
+	¿Quienes la desarrollaron? 
+	¿En qué estado se encuentra? prototipo, prueba de concepto, uso académico, uso industrial 
+	¿Quiénes la utilizan? academia independientemente, academia bajo contratos, industria, los mismos desarrolladores, otros usuarios aparte de los desarrolladores)
+
+EasyCrypt es un conjunto de herramientas para razonar sobre las propiedades reales de los cálculos probabilísticos con código contradictorio. Su aplicación principal es la construcción y verificación de pruebas criptográficas basadas en juegos. 
+Es un marco formado por un lenguaje de programación junto a un motor de resolución de lógica de Hoare Relacional Probabilística. El desarrollo de EasyCrypt se inició en 2009, y el prototipo inicial se usó para probar la seguridad de varias construcciones, incluso el esquema de cifrado Cramer-Shoup(*), el diseño de la función de hash iterativa Merfle-Damgaard(**) y el esquema de cifrado ZEAP(***). EasyCrypt ha sido desarrollado inicialmente por el Instituto de Software IMDEA e Inria. Actualmente se desarrolla en el instituto IMDEA Software, Inria y École Polytechnique. EasyCrypt es un proyecto de software libre, distribuido bajo los términos de la licencia CeCILL-B, y su código fuente está accesible desde la página del proyecto. 
+La versión actual de EasyCrypt (versión 1.0) aún está en desarrollo. 
+
+2.Objetivo de la herramienta 
+¿A qué tipos de problema apunta la herramienta? protocolos, tiempo real, dependabilidad, desempeño, seguridad,… 
+¿En cual etapa del proceso de desarrollo es útil la herramienta? especificación, arquitectura, diseño, implementación, testing, mantenimiento,…
+
+Esta herramienta apunta a solucionar problemas de seguridad. EasyCrypt usa varios lenguajes de programación distintos a la hora de evaluar un código fuente. Esta es una herramienta que se utiliza en las etapas de desarrollo y testing de software. 
+
+EasyCrypt funciona como un intérprete de un lenguaje de propósito general y de forma interactiva: cuando se le proporciona un fichero o fuente a evaluar, lo recorre de arriba hacia abajo comprobando que todos los pasos de las demostraciones son correctos. Usando Proof General, un modo de editor de texto Emacs, es posible editar un fichero fuente mientras el intérprete lo va emulando sobre la marcha, ayudando y guiando al usuario a medida que éste desarrolla cada demostración. 
+
+3. Descripción de la herramienta del lado del usuario 
+¿Tiene interfaz gráfica? 
+¿Trabaja sobre línea de comando? 
+¿Como es el lenguaje de especificación de modelos? 
+¿y el de propiedades? LTL, CTL, asercional,… 
+¿Que tipo de análisis permite permite? deadlock, progreso, invariantes, control de algún tipo de fairness,… 
+¿Trabaja directamente sobre código? ¿Cuál lenguaje? 
+¿Es necesario anotar el modelo/programa?
+¿Reporta contraejemplos? 
+¿Permite simulación? 
+¿Cómo visualiza?
+
+Funcionamiento de EasyCrypt 
+
+EasyCrypt usa varios lenguajes de programación distintos a la hora de evaluar un código fuente. 
+Lenguaje de especificación
+Lenguaje de expresiones
+Lenguaje de expresiones probabilísticas
+Lenguaje pWhile
+Lenguajes de demostración
+Juicios
+Tácticas
+
+4.Aspectos técnicos de la herramienta (marian)
+5. Casos de estudio (exitosos o no) de la herramienta (marian) 
+6. Comparación con otras herramientas (marian)
+7. Caso de estudio elegido (marian y yo)
+8. Conclusiones particulares (marian y yo)
+
 
 \section{Objetivos de EasyCrypt}
 
@@ -108,7 +162,7 @@ Logica Relacional:
 Se utiliza el metodo probabilistico RELATIONAL HOARE LOGIC (pRHL):
 |= c 1 ∼ c 2 : Ψ ⇒ Φ	donde c1,c2 son programas probabilisticos y los simbolos corresponden a la pre y post condicion.
 Dentro de EasyCrypt la gramatica es la siguiente
-$Ψ, Φ ::= e | ¬Φ | Ψ ∧ Φ | Ψ ∨ Φ | Ψ =⇒ Φ | ∀x. Φ | ∃x. Φ$
+$\Psi$, $\Phi$ ::= e | $\neg$ $\neg$$\Phi$ | $\Psi$ ∧ $\Phi$ | $\Psi$ ∨ $\Phi$ | $\Psi$ =⇒ $\Phi$ | ∀x. $\Phi$ | ∃x. $\Phi$
 Donde la e corresponde a una expresion Booleana.
 
 Razonamiento probabilistico:
@@ -201,56 +255,7 @@ EXPLICAMOS O NO:
 
 Resultado: La reduccion de codigo es sustancial tanto que es 5 veces mas chica que la inicial.
 
-Type, constant and operator declarations, which introduce the objects manipulated by the scheme.
-In this case, they include a type for elements of the cyclic group G, constants representing the
-length of messages k, the order of the group q and a generator g, and operators denoting the group
-law and exponentiation, and exclusive or on bitstrings;
-2. Axioms, which capture mathematical properties of these objects, and are used by automated tools
-to check the validity of the proof sketch. We use axioms to state properties of the group law and
-exponentiation, and the exclusive or operator;
-3. Game definitions, where adversaries are specified as abstract procedures with access to oracles.
-In all games in the figure the hash function H is modeled as a random oracle and the adversary
-is represented as two procedures A 1 and A 2 that share state. The procedures representing the
-adversary are given access to a wrapper H A for the hash oracle that just stores queries in a list
-L A before forwarding them to H:
-$ {0, 1} k ; L[x] ← h end if; return L[x]
-/ dom(L) then h ←
-H(x) def
-= if x ∈
-def
-H A (x) = L A ← x :: L A ; m ← H(x); return m
-4. Judgments in pRHL. The general form of judgments is |= G 1 ∼ G 2 : Ψ ⇒ Φ, where G 1 and G 2
-are games, and the pre-condition Ψ and the post-condition Φ are relations on program memories
-(memories map program variables to values). Pre- and post-conditions are first-order formulae
-built from relational expressions, in which language expressions are tagged with h1i or h2i to
-denote their interpretation in the first or second game. We often consider equivalence of memories
-on a set of variables X; we use = X as a shorthand for the formula ∀x ∈ X. xh1i = xh2i;
-5. Claims about probability, built from probability quantities (the probability of an event in a game),
-arithmetic operators, and mathematical relations (e.g. =, <, ≤). The final statement that expresses
-the overall security guarantee brought by the proof sketch is usually a claim that upper bounds
-the probability of adversary success in an initial attack game in terms of the probabilities of one
-or more adversaries breaking security assumptions. $
 
-We briefly comment on the sequence of games in Figure 1. The first and last games encode the IND-
-CPA and LCDH experiments, respectively. We obtain G 1 by inlining the key generation and encryption
-procedures in the initial game and rearranging instructions so that random choices are made upfront.
-We prove that games IND-CPA and G 1 yield identical distributions on the result of the game (denoted
-by the keyword res). We deduce from this that the probability of the event b = b ′ is the same in both
-games.
-In game G 2 we substitute the value H(ŷ) used to compute the challenge ciphertext by a uniformly
-chosen value. This only makes a difference if A 1 queries ŷ to H, and this happens with the same probability in either game. Thus, the difference in the probability of any event in these games is
-bounded by the probability of ŷ ∈ L A in G 2 . This can be seen as a semantic variant of the Fundamental
-Lemma of Game-Playing; the logic allows to dispense with the code instrumentation needed to apply
-the syntactic counterpart of the lemma.
-The transition from G 2 to G 3 uses a code transformation known as optimistic sampling: instead of
-sampling h and defining a value γ as h ⊕ m b , we sample γ and define h = γ ⊕ m b ; we then remove the
-definition of h as dead code. This transformation is proven admissible within the logic and removes
-the dependency of the adversary’s output from the challenge bit b.
-The final transition performs the reduction to LCDH by exhibiting an adversary B that uses A
-as a sub-procedure and for which the semantics of games LCDH and G 3 coincide. Finally, from the
-preceding claims, the advantage of A can be bounded by the probability of B in solving LCDH. The
-resulting proof sketch is about 250 lines long, about 5 times shorter than the proof in CertiCrypt
-reported in [4]—and arguably much simpler and close to a pen-and-paper proof.
 -------------------------------------------------------------
 
 Cramer-Shoup Cryptosystem 5A
