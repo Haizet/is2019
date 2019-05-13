@@ -22,6 +22,7 @@
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
 \usepackage{url}
+\usepackage{amsmath,latexsym}
 \urldef{\mailsa}\path|{astradalucasezequiel@gmail.com|
 \urldef{\mailsb}\path|marianvanetta@hotmail.com}
 |    
@@ -73,61 +74,15 @@
 Aca deberiamos escribir el resumen que el profe quiere
 \end{abstract}
 
+\section{Introduccion}
 
-\section{Introduction}
+\section{Objetivos de EasyCrypt}
 
-
-
-
-
-\section{Paper Preparation}
-
-
-
-\subsubsection{Headings.}
-
-
-
-\subsubsection{Lemmas, Propositions, and Theorems.}
-
-
-
-\subsection{Figures}
-
-
-
-
-
-\subsection{Formulas}
-
-
-
-
-\subsection{Footnotes}
-
-
-
-\subsection{Program Code}
-
-
-\subsection{Citations}
-
-
-\subsection{Page Numbering and Running Heads}
-
-
-\section{LNCS Online}
-
-
-
-
-\section{References}
-
-
-\section{Lecturas Mariano}
+\section{EasyCrypt del lado del Usuario}
 
 \section{Aspectos tecnicos}
 5A
+\cite{article5}
 EasyCrypt trabaja con enfoque basado en juego, cuyos principales actores son los ADVERSARIOS y los ORACULOS. Este contiene variables globales y una coleciones de procesos: Procesos definidos (Oraculos) y Procesos Abstractos (Adversarsios).
 
 Este posee 4 bases:
@@ -153,14 +108,14 @@ Logica Relacional:
 Se utiliza el metodo probabilistico RELATIONAL HOARE LOGIC (pRHL):
 |= c 1 ∼ c 2 : Ψ ⇒ Φ	donde c1,c2 son programas probabilisticos y los simbolos corresponden a la pre y post condicion.
 Dentro de EasyCrypt la gramatica es la siguiente
-Ψ, Φ ::= e | ¬Φ | Ψ ∧ Φ | Ψ ∨ Φ | Ψ =⇒ Φ | ∀x. Φ | ∃x. Φ
+$Ψ, Φ ::= e | ¬Φ | Ψ ∧ Φ | Ψ ∨ Φ | Ψ =⇒ Φ | ∀x. Φ | ∃x. Φ$
 Donde la e corresponde a una expresion Booleana.
 
 Razonamiento probabilistico:
 Estos razonamientos se expresan en terminos de eventos probabilisticos y no como juicios de pRHL.
 
 9a
-
+\cite{article6}
 Easycrypt utiliza sistemas de reduccion abstractos sobre todo con el calculo lambda, estos son:
 	-Call-by-name: reduce la exprecion de mas afuera de la izquierda salvo que este en forma normal devil. No es estricta.
 	-Call-by-value: reduce la expresion de mas adentro de la izquierda, salvo que este en forma normal devil. Es estricta.
@@ -174,7 +129,7 @@ Easycrypt utiliza sistemas de reduccion abstractos sobre todo con el calculo lam
 
 \section{COMPARACION DE PROGRAMAS}
 5A
-
+\cite{article5}
 CeriCrypt Vs EasyCrypt:
 En la parte programacional, EasyCrypt no posee bucles ni procesos recursivos. En el caso de las evidencias generadas, EasyCrypt es parcial por no tener generadores de pruebas COQ (se esta buscando agregar esta feature). Este tambien genera pruebas en base a la probabilidad y no maquinas totalmente probadas.
 
@@ -201,25 +156,11 @@ En la parte programacional, EasyCrypt no posee bucles ni procesos recursivos. En
 Hardware para esta prueba: 2.8GHz Intel Core 2 Duo processor con 4GB de RAM en Mac OS X 10.6.7
 
 10A
+\cite{article8}
 CRYPTHOL
-Rigour: The methodology should allow only valid proof steps. In practice, this
-requires formal verification, since humans err.
-Comprehensibility: The methodology should capture relevant proof ideas in a
-way that humans can also create, understand, and check. This means that
-although humans can trust the formally verified proofs, they do not have to,
-as they can in principle verify the proofs themselves.
+En la semantica, EasyCrypt soporta distribuciones de probabildad discretas, todas expresadas usando el lenguaje pWhile. Crypthol tiene el mismo dominio y el lenguaje es igual de expresivo gracias al operador de punto fijo.
 
-The semantic domain determines what notions and constructions can be
-expressed in the language. CertiCrypt and EasyCrypt support discrete subprobability distributions, all of which can be expressed using a probabilistic while
-language
-
-For EasyCrypt, we
-are neither aware of a consistency proof for its underlying logic, in particular for
-the module system, nor of a derivation of its probabilistic relational Hoare logic
-
-EasyCrypt
-does not have a small kernel, so the whole implementation in OCaml and the
-external SMT solvers must be trusted.
+CryptHol crea su dominio semantico atravez de los principios de HOL y tiene la un asistente de prueba (COQ o Isabelle) para corroborar las derivaciones de las reglas de prueba. En cambio easycrypt no posee ningun asistente para las pruebas, entonces hay que confiar que las implementaciones en ocaml y que los "resolvedores" externos SMT son correctas
 
 
 \begin{table}
@@ -237,16 +178,131 @@ external SMT solvers must be trusted.
 \end{tabular}
 \end{table}
 
+
 NO se encontro el hardware utilizado para esta prueba
 
 
-\section{Casos de estudios}
-IND-CPA  5A
 
-CMAC 6A
+
+\section{Casos de estudios}
+EasyCrypt es una herramienta muy potente para probar problemas de seguridad, por lo tanto los siguientes casos de estudio hace referencia mayoritariamente la criptografia.
+
+IND-CPA  5A
+\cite{article5}
+Hashed ElGamal es una variante de encriptacion ElGamal, la cual puede ser reducida a lo siguiente (Computational Diffie-Hellman) : Es dificil computa $g^x*y$ dado $g^x$ y $g^y$ donde x e y son eventos aleatorios uniformes dentro de Zq.
+Para esta prueba primero es necesario expresar los cinco ingredientes para el input de EasyCrypt:
+-Tipo, constantes y declaracioenes del operador;
+-Axiomas;
+-Defiiciones del "Juego"
+-Juicios en pRHL;
+-"Claims" de la probabildad
+
+EXPLICAMOS O NO:
+
+Resultado: La reduccion de codigo es sustancial tanto que es 5 veces mas chica que la inicial.
+
+Type, constant and operator declarations, which introduce the objects manipulated by the scheme.
+In this case, they include a type for elements of the cyclic group G, constants representing the
+length of messages k, the order of the group q and a generator g, and operators denoting the group
+law and exponentiation, and exclusive or on bitstrings;
+2. Axioms, which capture mathematical properties of these objects, and are used by automated tools
+to check the validity of the proof sketch. We use axioms to state properties of the group law and
+exponentiation, and the exclusive or operator;
+3. Game definitions, where adversaries are specified as abstract procedures with access to oracles.
+In all games in the figure the hash function H is modeled as a random oracle and the adversary
+is represented as two procedures A 1 and A 2 that share state. The procedures representing the
+adversary are given access to a wrapper H A for the hash oracle that just stores queries in a list
+L A before forwarding them to H:
+$ {0, 1} k ; L[x] ← h end if; return L[x]
+/ dom(L) then h ←
+H(x) def
+= if x ∈
+def
+H A (x) = L A ← x :: L A ; m ← H(x); return m
+4. Judgments in pRHL. The general form of judgments is |= G 1 ∼ G 2 : Ψ ⇒ Φ, where G 1 and G 2
+are games, and the pre-condition Ψ and the post-condition Φ are relations on program memories
+(memories map program variables to values). Pre- and post-conditions are first-order formulae
+built from relational expressions, in which language expressions are tagged with h1i or h2i to
+denote their interpretation in the first or second game. We often consider equivalence of memories
+on a set of variables X; we use = X as a shorthand for the formula ∀x ∈ X. xh1i = xh2i;
+5. Claims about probability, built from probability quantities (the probability of an event in a game),
+arithmetic operators, and mathematical relations (e.g. =, <, ≤). The final statement that expresses
+the overall security guarantee brought by the proof sketch is usually a claim that upper bounds
+the probability of adversary success in an initial attack game in terms of the probabilities of one
+or more adversaries breaking security assumptions. $
+
+We briefly comment on the sequence of games in Figure 1. The first and last games encode the IND-
+CPA and LCDH experiments, respectively. We obtain G 1 by inlining the key generation and encryption
+procedures in the initial game and rearranging instructions so that random choices are made upfront.
+We prove that games IND-CPA and G 1 yield identical distributions on the result of the game (denoted
+by the keyword res). We deduce from this that the probability of the event b = b ′ is the same in both
+games.
+In game G 2 we substitute the value H(ŷ) used to compute the challenge ciphertext by a uniformly
+chosen value. This only makes a difference if A 1 queries ŷ to H, and this happens with the same probability in either game. Thus, the difference in the probability of any event in these games is
+bounded by the probability of ŷ ∈ L A in G 2 . This can be seen as a semantic variant of the Fundamental
+Lemma of Game-Playing; the logic allows to dispense with the code instrumentation needed to apply
+the syntactic counterpart of the lemma.
+The transition from G 2 to G 3 uses a code transformation known as optimistic sampling: instead of
+sampling h and defining a value γ as h ⊕ m b , we sample γ and define h = γ ⊕ m b ; we then remove the
+definition of h as dead code. This transformation is proven admissible within the logic and removes
+the dependency of the adversary’s output from the challenge bit b.
+The final transition performs the reduction to LCDH by exhibiting an adversary B that uses A
+as a sub-procedure and for which the semantics of games LCDH and G 3 coincide. Finally, from the
+preceding claims, the advantage of A can be bounded by the probability of B in solving LCDH. The
+resulting proof sketch is about 250 lines long, about 5 times shorter than the proof in CertiCrypt
+reported in [4]—and arguably much simpler and close to a pen-and-paper proof.
+-------------------------------------------------------------
+
+Cramer-Shoup Cryptosystem 5A
+\cite{article5}
+Este caso se hizo famoso ya que fue el primer encriptador asimetrico eficiente. La idea es probar que es seguro contra ataques "adaptive chosen-ciphertext"
+Mediante la prueba de las definiciones de "Target Collision-Resistance" y CCA-advantange), se puede probar el teorema de "Security of Cramer-Shoup".
+La prueba fue exitosa para cualquier "decryption query" (bajo la condicion de u =! u')
+
+--------------------------------------------------------------
+
+CMAC 6A caso exitoso
+\cite{article7}
+s
+CMAC fue propuesto por 
+The CMAC standard, when initially proposed by
+Iwata and Kurosawa as OMAC1, was equipped with a complex
+game-based security proof. Following recent advances in formal
+verification for game-based security proofs, we formalize a proof
+of unforgeability for CMAC in EasyCrypt. A side effect of
+this proof includes improvements and extensions to EasyCrypt’s
+standard libraries. This formal proof obtains security bounds
+very similar to Iwata and Kurosawa’s for CMAC, but also
+proves secure a certain number of intermediate constructions of
+independent interest, including ECBC, FCBC and XCBC. This
+work represents one more step in the direction of obtaining a
+reliable set of independently verifiable evidence for the security
+of international cryptographic standards.
+
+
+
+
 
 A more ambitious goal
 would be to enhance EasyCrypt with a language for programming strategies, in
 the way proof assistants such as Coq allow users to program their own tactics.
 
+\section{References}
+
+\begin{thebibliography}{4}
+\bibitem{article5}
+Gilles Barthe, Benjamin Grégoire, Sylvain Heraud, Santiago Zanella Béguelin: Computer-Aided Security Proofs
+for the Working Cryptographer
+\bibitem{article6}
+Guillermo Ramos Gutiérrez: Implementing a term rewriting
+engine for the EasyCrypt framework
+\bibitem{article7}
+Cécile Baritel-Ruet, François Dupressoir, Pierre-Alain Fouque, Benjamin Grégoire. Formal Security
+Proof of CMAC and Its Variants. CSF 2018 - 31st EEE Computer Security Foundations Symposium,
+Jul 2018, Oxford, United Kingdom.
+\bibitem{article8}
+David A. Basin, Andreas Lochbihler, and S. Reza Sefidgar: CryptHOL: Game-based Proofs in
+Higher-order Logic
+
+\end{thebibliography}
 \end{document}
