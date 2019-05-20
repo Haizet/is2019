@@ -73,55 +73,36 @@
 
 
 \begin{abstract}
-The abstract should summarize the contents of the paper and should
-contain at least 70 and at most 150 words. It should be written using the idk.
+
 \end{abstract}
 
 \section{Introduccion}
 
 \section{Contexto de creacion de la herramienta}
-$https://www.easycrypt.info/trac/no1$
-	¿Se creó en un contexto académico, industrial? 
-	¿Dónde? 
-	¿Quienes la desarrollaron? 
-	¿En qué estado se encuentra? prototipo, prueba de concepto, uso académico, uso industrial 
-	¿Quiénes la utilizan? academia independientemente, academia bajo contratos, industria, los mismos desarrolladores, otros usuarios aparte de los desarrolladores)
 
 EasyCrypt es un conjunto de herramientas para razonar sobre las propiedades reales de los cálculos probabilísticos con código contradictorio. Su aplicación principal es la construcción y verificación de pruebas criptográficas basadas en juegos. 
 Es un marco formado por un lenguaje de programación junto a un motor de resolución de lógica de Hoare Relacional Probabilística. El desarrollo de EasyCrypt se inició en 2009, y el prototipo inicial se usó para probar la seguridad de varias construcciones, incluso el esquema de cifrado Cramer-Shoup(*), el diseño de la función de hash iterativa Merfle-Damgaard(**) y el esquema de cifrado ZEAP(***). EasyCrypt ha sido desarrollado inicialmente por el Instituto de Software IMDEA e Inria. Actualmente se desarrolla en el instituto IMDEA Software, Inria y École Polytechnique. EasyCrypt es un proyecto de software libre, distribuido bajo los términos de la licencia CeCILL-B, y su código fuente está accesible desde la página del proyecto. 
 La versión actual de EasyCrypt (versión 1.0) aún está en desarrollo. 
 
 \section{Objetivo de la herramienta} 
-¿A qué tipos de problema apunta la herramienta? protocolos, tiempo real, dependabilidad, desempeño, seguridad,… 
-¿En cual etapa del proceso de desarrollo es útil la herramienta? especificación, arquitectura, diseño, implementación, testing, mantenimiento,…
 
 Esta herramienta apunta a solucionar problemas de seguridad. EasyCrypt usa varios lenguajes de programación distintos a la hora de evaluar un código fuente. Esta es una herramienta que se utiliza en las etapas de desarrollo y testing de software. 
 
 EasyCrypt funciona como un intérprete de un lenguaje de propósito general y de forma interactiva: cuando se le proporciona un fichero o fuente a evaluar, lo recorre de arriba hacia abajo comprobando que todos los pasos de las demostraciones son correctos. Usando Proof General, un modo de editor de texto Emacs, es posible editar un fichero fuente mientras el intérprete lo va emulando sobre la marcha, ayudando y guiando al usuario a medida que éste desarrolla cada demostración. 
 
 \section{Descripción de la herramienta del lado del usuario}
-¿Tiene interfaz gráfica? 
-¿Trabaja sobre línea de comando? 
-¿Como es el lenguaje de especificación de modelos? 
-¿y el de propiedades? LTL, CTL, asercional,… 
-¿Que tipo de análisis permite permite? deadlock, progreso, invariantes, control de algún tipo de fairness,… 
-¿Trabaja directamente sobre código? ¿Cuál lenguaje? 
-¿Es necesario anotar el modelo/programa?
-¿Reporta contraejemplos? 
-¿Permite simulación? 
-¿Cómo visualiza?
-
-Funcionamiento de EasyCrypt 
 
 EasyCrypt usa varios lenguajes de programación distintos a la hora de evaluar un código fuente. 
-Lenguaje de especificación
-Lenguaje de expresiones
-Lenguaje de expresiones probabilísticas
-Lenguaje pWhile
-Lenguajes de demostración
-Juicios
-Tácticas
 
+\begin{itemize}
+	\item Lenguaje de especificación
+	\item Lenguaje de expresiones
+	\item Lenguaje de expresiones probabilísticas
+	\item Lenguaje pWhile
+	\item Lenguajes de demostración
+	\item Juicios
+	\item Tácticas
+\end{itemize}
 
 \section{Aspectos tecnicos}
 EasyCrypt trabaja con enfoque basado en juego, cuyos principales actores son los ADVERSARIOS y los ORACULOS. Este contiene variables globales y una coleciones de procesos: Procesos definidos (Oraculos) y Procesos Abstractos (Adversarsios).
