@@ -22,14 +22,14 @@
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{fancyvrb}
+\usepackage{hyperref}
 \usepackage{amsmath,latexsym}
 \usepackage[utf8x]{inputenc}
 \usepackage[spanish]{babel}
 \urldef{\mailsa}\path|{astradalucasezequiel@gmail.com|
 \urldef{\mailsb}\path|marianvanetta@hotmail.com}
 |    
-\newcommand{\keywords}[1]{\par\addvspace\baselineskip
-\noindent\keywordname\enspace\ignorespaces#1}
+
 
 \begin{document}
 
@@ -76,12 +76,12 @@ La criptografía desempeña un papel clave en la seguridad de la comunicación m
 La sociedad depende hoy mas que nunca de la tecnolog ia, pero la inversión en seguridad es escasa y los riesgos de usar sistemas informaticos son cada dia mayores. La criptografia es una de las piedras angulares de la seguridad en este  ambito, por lo que recientemente se ha dedicado una cantidad considerable de recursos al desarrollo de herramientas que ayuden en la evaluacion y mejora de los algoritmos criptograficos. EasyCrypt es uno de estos sistemas. 
 
     A lo largo de este documento se discutirá sobre dicha herramienta, desde su historia hasta casos practicos que la utilizan.
+\keywords{Easycrypt  \and Game-based cryptographic proofs  \and Probabilistic.}
 
-\keywords{Easycrypt  \and Game-based cryptographic proofs	\and Probabilistic.}
 \end{abstract}
 
 \section{Introducción}
-EasyCrypt es un conjunto de herramientas para razonar sobre las propiedades reales de los cálculos probabilísticos con código contradictorio. Su aplicación principal es la construcción y verificación de pruebas criptográficas basadas en juegos. 
+\href{https://www.easycrypt.info/trac/}{EasyCrypt} es un conjunto de herramientas para razonar sobre las propiedades reales de los cálculos probabilísticos con código contradictorio. Su aplicación principal es la construcción y verificación de pruebas criptográficas basadas en juegos. 
 Es un marco formado por un lenguaje de programación junto a un motor de resolución de lógica de Hoare Relacional Probabilística. 
 
 
@@ -97,6 +97,18 @@ Esta herramienta apunta a solucionar problemas de seguridad. EasyCrypt usa vario
 EasyCrypt funciona como un intérprete de un lenguaje de propósito general y de forma interactiva: cuando se le proporciona un fichero o fuente a evaluar, lo recorre de arriba hacia abajo comprobando que todos los pasos de las demostraciones son correctos. Usando Proof General, un modo de editor de texto Emacs, es posible editar un fichero fuente mientras el intérprete lo va emulando sobre la marcha, ayudando y guiando al usuario a medida que éste desarrolla cada demostración. 
 
 \section{Descripción de la herramienta del lado del usuario}
+
+EasyCrypt usa varios lenguajes de programación distintos a la hora de evaluar un código fuente. 
+
+\begin{itemize}
+	\item Lenguaje de especificación
+	\item Lenguaje de expresiones
+	\item Lenguaje de expresiones probabilísticas
+	\item Lenguaje pWhile
+	\item Lenguajes de demostración
+	\item Juicios
+	\item Tácticas
+\end{itemize}
 
 EasyCrypt usa varios lenguajes de programación distintos a la hora de evaluar un código fuente. 
 
@@ -161,16 +173,16 @@ Easycrypt utiliza sistemas de reduccion abstractos sobre todo con el calculo lam
 ------------------------------
 -no encuentro nada de estados, ni de abstraccion
 
--tipo de respuestas
+-tipo de respuestas: proof sketches con formato COQ, para ser luego ser ejecutadas en dicho formato.
 
 
 \section{COMPARACION DE PROGRAMAS}
-\centerline{\emph{CertyCrypt}}
+\centerline{\emph{CertiCrypt}}
 
-En la parte programacional, EasyCrypt no posee bucles ni procesos recursivos. En el caso de las evidencias generadas, EasyCrypt es parcial por no tener generadores de pruebas COQ (se esta buscando agregar esta feature). Este tambien genera pruebas en base a la probabilidad y no maquinas totalmente probadas.
+En la parte programacional, EasyCrypt no posee bucles ni procesos recursivos, CertiCrypt si. En el caso de las evidencias generadas, EasyCrypt es parcial por no tener generadores de pruebas COQ (se esta buscando agregar esta feature). Este tambien genera pruebas en base a la probabilidad y no maquinas totalmente probadas.
 
 \begin{table}
-  \caption{Comparación de EasyCrypt con CertyCrypt}
+  \caption{Comparación de EasyCrypt con CertiCrypt}
   \label{tab:simple1}
   \centering
   \begin{tabular}{ |p{3.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|  }
@@ -189,14 +201,20 @@ En la parte programacional, EasyCrypt no posee bucles ni procesos recursivos. En
 
 Hardware para esta prueba: 2.8GHz Intel Core 2 Duo processor con 4GB de RAM en Mac OS X 10.6.7.\cite{article5}
 
-
+Con el grafico anterior podemos concluir que la mayor diferencia entre estos dos programas es la rapidez y facilidad en la construcion de pruebas.
 
 \centerline{\emph{CRYPTHOL}}
 
-En la semantica, EasyCrypt soporta distribuciones de probabildad discretas, todas expresadas usando el lenguaje pWhile. Crypthol tiene el mismo dominio y el lenguaje es igual de expresivo gracias al operador de punto fijo.
+En la semantica, EasyCrypt soporta distribuciones de probabildad discretas, todas expresadas usando el lenguaje pWhile. Crypthol tiene el mismo dominio y el lenguaje es igual de expresivo gracias al operador de punto fijo. A diferencia del lenguaje imperativo usado por EasyCrypt, CryptHol utiliza lenguaje funcional embebido.
 
-CryptHol crea su dominio semantico atravez de los principios de HOL y tiene la un asistente de prueba (COQ o Isabelle) para corroborar las derivaciones de las reglas de prueba. En cambio easycrypt no posee ningun asistente para las pruebas, entonces hay que confiar que las implementaciones en ocaml y que los "resolvedores" externos SMT son correctas.\cite{article8}
+CryptHol crea su dominio semantico atravez de los principios de HOL y tiene la un asistente de prueba (COQ o Isabelle) para corroborar las derivaciones de las reglas de prueba. En cambio easycrypt no posee ningun asistente para las pruebas, entonces hay que confiar que las implementaciones en ocaml y que los "solucionadores" externos SMT son correctas.
 
+Otra diferencia importante radica en las "librerias" disponibles. Como ya mencionamos, EasyCrypt no posee asistentes de pruebas, por lo tanto tiene librerias muy chicas que le permite razonar programas rapidamente, a diferencia de CryptHol que al estar enfocado en resolver matematica pura, necesita de librerias completas que son brindadas por Isabelle/HOL o COQ.
+
+In EasyCrypt and CryptHOL, the efficiency of computations
+cannot be expressed formally because their logics identify terms up to computation:
+for example, the computation ($\lambda$x. x+x)(1) cannot be distinguished from the value 2
+En ambos programas la eficiencia de computos no puede ser expresada formalmente porque sus locas identifican terminos hasta computos, por ejemplo, ($\lambda$x. x+x) no puede ser distinguido de el valor 2.\cite{article8}
 
 \begin{table}
   \caption{Comparación de EasyCrypt con CryptHOL}
@@ -214,7 +232,7 @@ CryptHol crea su dominio semantico atravez de los principios de HOL y tiene la u
 \end{table}
 
 
-NO se encontro el hardware utilizado para esta prueba
+No se encontro el hardware utilizado para esta prueba.
 
 
 
@@ -226,34 +244,20 @@ EasyCrypt es una herramienta muy potente para probar problemas de seguridad, por
 
 Hashed ElGamal es una variante de encriptacion ElGamal, la cual puede ser reducida a lo siguiente (Computational Diffie-Hellman) : Es dificil computar $g^{x*y}$ dado $g^x$ y $g^y$ donde x e y son eventos aleatorios uniformes dentro de Zq.
 Para esta prueba primero es necesario expresar los cinco ingredientes para el input de EasyCrypt:
--Tipo, constantes y declaracioenes del operador;
+\begin{itemize}
+	\item Tipo, constantes y declaracioenes del operador;
+	\item Axiomas;
+	\item Defiiciones del "Juego"
+	\item Juicios en pRHL;
+	\item Claims de la probabildad
+\end{itemize}
 
--Axiomas;
-
--Defiiciones del "Juego"
-
--Juicios en pRHL;
-
--"Claims" de la probabildad
-
-EXPLICAMOS O NO:
-
-Resultado: La reduccion de codigo es sustancial tanto que es 5 veces mas chica que la inicial.\cite{article5}
+Resultado: La reduccion de codigo es sustancial tanto que es 5 veces mas chica que la inicial asi tambien como el desempeno de EasyCrypt (medido en tiempo) fue de 33 segundos.\cite{article5}
 
 
-
-\centerline{\emph{Cramer-Shoup Cryptosystem}}
-
-Este caso se hizo famoso ya que fue el primer encriptador asimetrico eficiente. La idea es probar que es seguro contra ataques "adaptive chosen-ciphertext"
-Mediante la prueba de las definiciones de "Target Collision-Resistance" y CCA-advantange), se puede probar el teorema de "Security of Cramer-Shoup".
-La prueba fue exitosa para cualquier "decryption query" (bajo la condicion de u =! u')\cite{article5}
-
-
-
-\centerline{\emph{CMAC 6A caso exitoso}}
+\centerline{\emph{CMAC}}
 \cite{article7}
-s
-CMAC fue propuesto por 
+CMAC fue propuesto por Iwata y Kurosawa con el nombre ed OMAC1
 The CMAC standard, when initially proposed by
 Iwata and Kurosawa as OMAC1, was equipped with a complex
 game-based security proof. Following recent advances in formal
@@ -268,9 +272,28 @@ work represents one more step in the direction of obtaining a
 reliable set of independently verifiable evidence for the security
 of international cryptographic standards.
 
+Caso Exitoso
+
+\centerline{\emph{Cramer-Shoup Cryptosystem}}
+
+Este caso se hizo famoso ya que fue el primer encriptador asimetrico eficiente. La idea es probar que es seguro contra ataques "adaptive chosen-ciphertext"
+Mediante la prueba de las definiciones de "Target Collision-Resistance" y CCA-advantange), se puede probar el teorema de "Security of Cramer-Shoup".
+La prueba fue exitosa para cualquier "decryption query" (bajo la condicion de u =! u')\cite{article5}
 
 
 \section{Conclusion}
+
+A more ambitious goal
+would be to enhance EasyCrypt with a language for programming strategies, in
+the way proof assistants such as Coq allow users to program their own tactics.
+
+A more ambitious goal
+would be to enhance EasyCrypt with a language for programming strategies, in
+the way proof assistants such as Coq allow users to program their own tactics.
+
+A more ambitious goal
+would be to enhance EasyCrypt with a language for programming strategies, in
+the way proof assistants such as Coq allow users to program their own tactics.
 
 A more ambitious goal
 would be to enhance EasyCrypt with a language for programming strategies, in
