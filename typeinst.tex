@@ -73,12 +73,25 @@
 
 \begin{abstract}
 La criptografía desempeña un papel clave en la seguridad de la comunicación moderna e infractucturas informáticas.  Por este motivo es de suma importante diseñar sistemas criptgráficos que proporcionen grandes garantías de seguridad.
-La sociedad depende hoy mas que nunca de la tecnolog ia, pero la inversión en seguridad es escasa y los riesgos de usar sistemas informaticos son cada dia mayores. La criptografia es una de las piedras angulares de la seguridad en este  ambito, por lo que recientemente se ha dedicado una cantidad considerable de recursos al desarrollo de herramientas que ayuden en la evaluacion y mejora de los algoritmos criptograficos. EasyCrypt es uno de estos sistemas. 
+La sociedad depende hoy mas que nunca de la tecnologia, pero la inversión en seguridad es escasa y los riesgos de usar sistemas informaticos son cada dia mayores. La criptografia es una de las piedras angulares de la seguridad en este  ambito, por lo que recientemente se ha dedicado una cantidad considerable de recursos al desarrollo de herramientas que ayuden en la evaluacion y mejora de los algoritmos criptograficos. EasyCrypt es uno de estos sistemas. 
 
     A lo largo de este documento se discutirá sobre dicha herramienta, desde su historia hasta casos practicos que la utilizan.
-\keywords{Easycrypt  \and Game-based cryptographic proofs  \and Probabilistic.}
+\keywords{Easycrypt  \and pruebas criptograficas \and juegos  \and Probabilistico.}
 
 \end{abstract}
+
+\section{Cosas que hacer}
+
+\begin{itemize}
+	\item Poner referencias (lucas)
+	\item Opinion: La intro es mas abstract que el abstract
+	\item Opinion: el cuadro de pwhile capaz que vaya en descrip
+	\item no encuentro nada de estados, ni de abstraccion, ni que respuesta da en aspectos tecnicos
+	\item Explicar seguridades de CMAC
+	\item Aprendere cramer-shoup para el oral y terminar el caso de estudio seleccionado
+	\item Hacer conclucion
+	\item Revisar Ortografia
+\end{itemize}
 
 \section{Introducción}
 \href{https://www.easycrypt.info/trac/}{EasyCrypt} es un conjunto de herramientas para razonar sobre las propiedades reales de los cálculos probabilísticos con código contradictorio. Su aplicación principal es la construcción y verificación de pruebas criptográficas basadas en juegos. 
@@ -111,16 +124,6 @@ EasyCrypt usa varios lenguajes de programación distintos a la hora de evaluar u
 \end{itemize}
 
 EasyCrypt usa varios lenguajes de programación distintos a la hora de evaluar un código fuente. 
-
-\begin{itemize}
-	\item Lenguaje de especificación
-	\item Lenguaje de expresiones
-	\item Lenguaje de expresiones probabilísticas
-	\item Lenguaje pWhile
-	\item Lenguajes de demostración
-	\item Juicios
-	\item Tácticas
-\end{itemize}
 
 \section{Aspectos tecnicos}
 EasyCrypt trabaja con enfoque basado en juego, cuyos principales actores son los ADVERSARIOS y los ORACULOS. Este contiene variables globales y una coleciones de procesos: Procesos definidos (Oraculos) y Procesos Abstractos (Adversarsios).
@@ -163,17 +166,16 @@ Estos razonamientos se expresan en terminos de eventos probabilisticos y no como
 
 Easycrypt utiliza sistemas de reduccion abstractos sobre todo con el calculo lambda, estos son:
 
-	-Call-by-name: reduce la exprecion de mas afuera de la izquierda salvo que este en forma normal devil. No es estricta.
+\begin{itemize}
 
-	-Call-by-value: reduce la expresion de mas adentro de la izquierda, salvo que este en forma normal devil. Es estricta.
+	\item Call-by-name: reduce la exprecion de mas afuera de la izquierda salvo que este en forma normal devil. No es estricta.
 
-	-Applicative order: reduce la expresion de mas adentro a la izquierda, salvo que este de forma noraml. Es estricta.\cite{article6}
+	\item Call-by-value: reduce la expresion de mas adentro de la izquierda, salvo que este en forma normal devil. Es estricta.
 
+	\item Applicative order: reduce la expresion de mas adentro a la izquierda, salvo que este de forma noraml. Es estricta.
+\end{itemize}
 
-------------------------------
--no encuentro nada de estados, ni de abstraccion
-
--tipo de respuestas: proof sketches con formato COQ, para ser luego ser ejecutadas en dicho formato.
+tipo de respuestas: proof sketches con formato COQ, para ser luego ser ejecutadas en dicho formato.\cite{article6}
 
 
 \section{COMPARACION DE PROGRAMAS}
@@ -257,27 +259,33 @@ Resultado: La reduccion de codigo es sustancial tanto que es 5 veces mas chica q
 
 \centerline{\emph{CMAC}}
 \cite{article7}
-CMAC fue propuesto por Iwata y Kurosawa con el nombre ed OMAC1
-The CMAC standard, when initially proposed by
-Iwata and Kurosawa as OMAC1, was equipped with a complex
-game-based security proof. Following recent advances in formal
-verification for game-based security proofs, we formalize a proof
-of unforgeability for CMAC in EasyCrypt. A side effect of
-this proof includes improvements and extensions to EasyCrypt’s
-standard libraries. This formal proof obtains security bounds
-very similar to Iwata and Kurosawa’s for CMAC, but also
-proves secure a certain number of intermediate constructions of
-independent interest, including ECBC, FCBC and XCBC. This
-work represents one more step in the direction of obtaining a
-reliable set of independently verifiable evidence for the security
-of international cryptographic standards.
+CMAC fue propuesto por Iwata y Kurosawa con el nombre de OMAC1, el cual cuenta co una prueba criptografica basada en juegos muy compleja. Luego se fue transformando hasta llegar al CBC-MAC (bloque cifrado en cadena-codigo de autentificacion del mensaje, cipher block chaining-message authentication code). En este, el mensaje es dividido en lista de bloques. Cada bloque es enmascado usando el resultado del cifrado de bloque anterior, con esta dependencia se asegura que si se cambia un bit  del mensaje, el resto cambiara inpredeciblemente.
 
-Caso Exitoso
+Los MAC cuentan con con 3 algoritmos (generador de clave, tageo y de verificacion). Estos deben cumplir con 4 caracteristicas, deben ser correctos, seguros y deterministicos. A diferencia de los BCB que solo requieren ser seguros. (explicamos aca ?)
+
+C-MAC se extiende en:
+\begin{itemize}
+	\item CBC-MAC
+	\item ECBC
+	\item FCBC
+	\item XCBC
+\end{itemize}
+ explicar
+
+Para realizar esta prueba se necesita probar que:
+\begin{itemize}
+	\item ECBC es una MAC segura
+	\item FCBC es perfectamente indistinguible de ECBC
+	\item XCBC es computacionalmente indistinguible FCBC
+	\item CMAC es computacionalmente indistinguible de FCBC	
+\end{itemize}
+El caso fue exitoso ya que probo que CMAC es computacionalmente es indistinguible de FCBC, asi tambien los lemas utilizado para la prueba.
+
 
 \centerline{\emph{Cramer-Shoup Cryptosystem}}
 
 Este caso se hizo famoso ya que fue el primer encriptador asimetrico eficiente. La idea es probar que es seguro contra ataques "adaptive chosen-ciphertext"
-Mediante la prueba de las definiciones de "Target Collision-Resistance" y CCA-advantange), se puede probar el teorema de "Security of Cramer-Shoup".
+Mediante la prueba de las definiciones de Target Collision-Resistance y CCA-advantange), se puede probar el teorema de "Security of Cramer-Shoup".
 La prueba fue exitosa para cualquier "decryption query" (bajo la condicion de u =! u')\cite{article5}
 
 
