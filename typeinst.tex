@@ -19,7 +19,6 @@
 
 \usepackage{amssymb}
 \setcounter{tocdepth}{3}
-\usepackage{graphicx}
 \usepackage{url}
 \usepackage{fancyvrb}
 \usepackage{hyperref}
@@ -147,7 +146,22 @@ donde la e corresponde a una expresión Booleana.
 
 	\item Razonamiento probabilístico:
 Estos razonamientos se expresan en términos de eventos probabilísticos y no como juicios de pRHL.\cite{article3}
+
 \end{itemize}
+En caso de que EasyCrypt encuentre un evento fallido, su razonamiento se va a basar en el siguiente lema:
+\begin{lemma}{Fundamental Lemma}
+Let $G_1$ , $G_2$ be two games and A, B, and F be events such that
+
+\[|= G_1 ∼ G_2 : \Psi \implies (F(1) \leftrightarrow F(2)) \land (\neg F(1) \rightarrow (A(1) \leftrightarrow B(2)))\]
+Then, if $m_1$ $\Psi$ $m_2$ ,
+\begin{enumerate}
+	\item Pr [$G_1$ , $m_1$ : A $\land$ $\neg$F ] = Pr [$G_2$ , $m_2$ : B $\land$ $\neg$ F ],
+	\item Pr [$G_1$ , $m_1$ : A] − Pr [$G_2$ , $m_2$ : B] $\leq$  Pr [$G_1$ , $m_1$ : F ] = Pr [$G_2$ , $m_2$ : F ]
+\end{enumerate}
+\end{lemma}
+
+Este Lema permite unir las diferencias entre la probabilidad de un evento A en el juego $G_1$ y la posible difrencia del evento B en el juego $G_2$ por la probabilidad de F en cualquier juego.\cite{article4}
+
 
 Easycrypt utiliza sistemas de reducción abstractos sobre todo con el cálculo lambda, estos son:
 
@@ -160,9 +174,8 @@ Easycrypt utiliza sistemas de reducción abstractos sobre todo con el cálculo l
 	\item Applicative order: reduce la expresión de más adentro a la izquierda, salvo que este de forma normal. Es estricta.
 \end{itemize}
 
-Las respuestas que brinda Easycrypt son proof sketches con formato COQ, para que luego, el usuario si lo desea las ejecute en dicho formato con dicho programa.\cite{article4}
-Las respuestas que brinda Easycrypt son proof sketches con formato COQ, para que luego, el usuario si lo desea las ejecute en dicho formato con dicho programa
-Las respuestas que brinda Easycrypt son proof sketches con formato COQ, para que luego, el usuario si lo desea las ejecute en dicho formato con dicho programaLas respuestas que brinda Easycrypt son proof sketches con formato COQ, para que luego, el usuario si lo desea las ejecute en dicho formato con dicho programa
+Las respuestas que brinda Easycrypt son proof sketches que incrementan la confianza en las mismas produciendo pruebas verificables independientes y tambien permite generar estas pruebas en formato COQ, para que luego, el usuario si lo desea las ejecute en dicho formato con dicho programa.\cite{article4}
+
 
 
 \section{COMPARACIÓN DE PROGRAMAS}
@@ -315,9 +328,10 @@ A nivel de usuario, lo unico positivo que tiene es que es sencillo instalarlo, p
 \section{Cosas que ver/hacer}
 \begin{itemize}
 	\item Objetivo de la herrramienta muy liviano
-	\item AT, la respuesta que brinda esta mal
+	\item AT, la respuesta que brinda la correji, fijate que te parece
 	\item en seguridad ECBC hay una oracion en ingles qeu nose como traducirla y en XCBC tambien
-	\item En cramer puse definiciones y teoremas en ingles, no quiero traducirlos porque seguro algo mal hago
+	\item En cramer puse definiciones y teoremas en ingles, no quiero traducirlos porque seguro algo mal hago nose que queres hacer al respecto
+	\item los casos de estudios sin contar CMAC los otros estan, depende cual elijamos lo agrando pero deberian estar mas o menos bien
 	\item Revisar ortografia
 \end{itemize}
 \section{References}
