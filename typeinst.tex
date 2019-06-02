@@ -87,12 +87,12 @@ Es un marco formado por un lenguaje de programación junto a un motor de resoluc
 
 \section{Introducción}
 La criptografía desempeña un papel clave en la seguridad de la comunicación moderna e infractucturas informáticas.  Por este motivo es de suma importante diseñar sistemas criptgráficos que proporcionen grandes garantías de seguridad.
-La sociedad depende hoy mas que nunca de la tecnologia, pero la inversión en seguridad es escasa y los riesgos de usar sistemas informaticos son cada dia mayores. La criptografia es una de las piedras angulares de la seguridad en este  ambito, por lo que recientemente se ha dedicado una cantidad considerable de recursos al desarrollo de herramientas que ayuden en la evaluacion y mejora de los algoritmos criptograficos. EasyCrypt es uno de estos sistemas.
+La sociedad depende hoy más que nunca de la tecnología, pero la inversión en seguridad es escasa y los riesgos de usar sistemas informáticos son cada día mayores. La criptografía es una de las piedras angulares de la seguridad en este  ámbito, por lo que recientemente se ha dedicado una cantidad considerable de recursos al desarrollo de herramientas que ayuden en la evaluación y mejora de los algoritmos criptográficos. EasyCrypt es uno de estos sistemas.
 
-EasyCrypt busca facilitar en tiempo y en simplificar pruebas de seguridad de altisima complejidad.En la seccion 2 y 3 introduce el contexto de creacion del programa. Seccion 4 analizara la usabilidad que brinda Easycrypt al usuario. Las especificaciones tecnicas, comparaciones con otros programas y casos de uso se encontraran en las secciones 5, 6 y 7. Por ultimo enunciaremos nuestra conclusion y opiniones sobre EasyCrypt.
+EasyCrypt busca facilitar en tiempo y en simplificar pruebas de seguridad de altísima complejidad. En la sección 2 y 3 se introduce el contexto de creación del programa. La sección 4 analizará la usabilidad que brinda Easycrypt al usuario. Las especificaciones técnicas, comparaciones con otros programas y casos de uso se encontrarán en las secciones 5, 6 y 7 respectivamente. Por último, enunciaremos nuestra conclusión y opiniones sobre EasyCrypt.
     
 \section{Contexto de creacion de la herramienta}
-El desarrollo de EasyCrypt se inició en 2009, y el prototipo inicial se usó para probar la seguridad de varias construcciones, incluso el esquema de cifrado Cramer-Shoup, el diseño de la función de hash iterativa Merfle-Damgaard y el esquema de cifrado ZEAP. EasyCrypt ha sido desarrollado inicialmente por el Instituto de Software \href{http://www.imdea.org/es}{IMDEA} (Institutos Madrileños de Estudios Avanzados) e \href{https://www.inria.fr/en/}{Inria} (Instituto de investigacion para ciencias digitales). Actualmente se desarrolla en el instituto IMDEA Software, Inria y \href{https://www.polytechnique.edu/}{École Polytechnique} (Instituto publico frances de educacion avanzada e investigacion). EasyCrypt es un proyecto de software libre, distribuido bajo los términos de la licencia CeCILL-B, y su código fuente está accesible desde la página del proyecto. 
+El desarrollo de EasyCrypt se inició en 2009 y el prototipo inicial se usó para probar la seguridad de varias construcciones, incluso el esquema de cifrado Cramer-Shoup, el diseño de la función de hash iterativa Merfle-Damgaard y el esquema de cifrado ZEAP. EasyCrypt ha sido desarrollado inicialmente por el Instituto de Software \href{http://www.imdea.org/es}{IMDEA} (Institutos Madrileños de Estudios Avanzados) e \href{https://www.inria.fr/en/}{Inria} (Instituto de Investigacion para Ciencias Digitales). Actualmente se desarrolla en el instituto IMDEA Software, Inria y \href{https://www.polytechnique.edu/}{École Polytechnique} (Instituto Público Francés de Educación Avanzada e Investigación). EasyCrypt es un proyecto de software libre, distribuido bajo los términos de la licencia CeCILL-B, y su código fuente está accesible desde la página del proyecto. 
 La versión actual de EasyCrypt (versión 1.0), lanzada el 10 Octubre 2017, aún está en desarrollo. 
 \cite{article2}
 
@@ -104,12 +104,12 @@ EasyCrypt funciona como un intérprete de un lenguaje de propósito general y de
 
 \section{Descripción de la herramienta del lado del usuario}
 
-Easycrypt tiene su propio programa  para ser utilizado el cual puede ser bajado de github.\cite{link1}
-Easycrypt se utiliza en la terminal de comando y tiene un funcionamiento muy simple pero poco intuitivo; Se ingresa el codigo deseado y al ejecutarlo este analiza linea por linea hasta llegar a un resultado o error. Por eso es mas viable utilizar EMACS.\cite{link2}. Emacs es un editor de texto que tiene un interprete de Turing Completa el cual usa el lenguaje ELisp. Puede ser instalado en las 3 sistemas operativos mas utilizados: Windows, Mac OS, y distribuciones de Linux. Utiliza archivos *.ec  .Es un programa en el cual la visualizacion de los elementos es mas amigable con el usuario. Tiene por un lado el archivo selecionado y por otro las ejecuciones realizadas. La interfaz permite analizar el archivo paso por paso(next) o ejectutarlo completamente(use), volver pasos atras(undo), revisar cual es el estado en determinada linea(state), entre otras opciones.
+Easycrypt tiene su propio programa para ser utilizado el cual puede ser bajado de github.\cite{link1}
+Easycrypt también se utiliza en la terminal de comando y tiene un funcionamiento muy simple pero poco intuitivo; Se ingresa el código deseado y al ejecutarlo este analiza línea por línea hasta llegar a un resultado o error. Por eso, es más viable utilizar EMACS.\cite{link2}. Emacs es un editor de texto que tiene un inteprete de Turing Completo, el cual usa el lenguaje ELisp. Puede ser instalado en los 3 sistemas operativos más utilizados: Windows, Mac OS y distribuciones de Linux. Utiliza archivos *.ec. Es un programa en el cual la visualización de los elementos es más amigable con el usuario. Tiene por un lado el archivo selecionado y por otro las ejecuciones realizadas. La interfaz permite analizar el archivo paso por paso (next) o ejectutarlo completamente(use), volver pasos atrás (undo), revisar cual es el estado en determinada linea(state), entre otras opciones.
 
 
 \section{Aspectos tecnicos}
-EasyCrypt trabaja con enfoque basado en juego, cuyos principales actores son los ADVERSARIOS y los ORACULOS. Este contiene variables globales y una coleciones de procesos: Procesos definidos (Oráculos) y Procesos Abstractos (Adversarsios).
+EasyCrypt trabaja con enfoque basado en juego, cuyos principales actores son los ADVERSARIOS y los ORÁCULOS. Este contiene variables globales y una colecciones de procesos: Procesos definidos (Oráculos) y Procesos Abstractos (Adversarsios).
 
 Éste posee 4 bases:
 \begin{itemize}
@@ -149,11 +149,11 @@ Estos razonamientos se expresan en términos de eventos probabilísticos y no co
 
 \end{itemize}
 En caso de que EasyCrypt encuentre un evento fallido, su razonamiento se va a basar en el siguiente lema:
-\begin{lemma}{Fundamental Lemma}
-Let $G_1$ , $G_2$ be two games and A, B, and F be events such that
+\begin{lemma}{Lema Fundamental:}
+Sea $G_1$ , $G_2$ dos juegos y A, B y F dos eventos tales que
 
 \[|= G_1 ∼ G_2 : \Psi \implies (F(1) \leftrightarrow F(2)) \land (\neg F(1) \rightarrow (A(1) \leftrightarrow B(2)))\]
-Then, if $m_1$ $\Psi$ $m_2$ ,
+Luego, si $m_1$ $\Psi$ $m_2$ ,
 \begin{enumerate}
 	\item Pr [$G_1$ , $m_1$ : A $\land$ $\neg$F ] = Pr [$G_2$ , $m_2$ : B $\land$ $\neg$ F ],
 	\item Pr [$G_1$ , $m_1$ : A] − Pr [$G_2$ , $m_2$ : B] $\leq$  Pr [$G_1$ , $m_1$ : F ] = Pr [$G_2$ , $m_2$ : F ]
@@ -174,13 +174,13 @@ Easycrypt utiliza sistemas de reducción abstractos sobre todo con el cálculo l
 	\item Applicative order: reduce la expresión de más adentro a la izquierda, salvo que este de forma normal. Es estricta.
 \end{itemize}
 
-Las respuestas que brinda Easycrypt son proof sketches que incrementan la confianza en las mismas produciendo pruebas verificables independientes y tambien permite generar estas pruebas en formato COQ, para que luego, el usuario si lo desea las ejecute en dicho formato con dicho programa.\cite{article4}
+Las respuestas que brinda Easycrypt son proof sketches que incrementan la confianza en las mismas produciendo pruebas verificables independientes y también permite generar estas pruebas en formato COQ, para que luego, el usuario si lo desea las ejecute en dicho formato con dicho programa.\cite{article4}
 
 
 
-\section{COMPARACIÓN DE PROGRAMAS}
+\section{Comparación de Programas.}
 \centerline{\emph{CertiCrypt}}
-En la parte programacional, EasyCrypt no posee bucles ni procesos recursivos, CertiCrypt si. En el caso de las evidencias generadas, EasyCrypt es parcial por no tener generadores de pruebas COQ (se esta buscando agregar esta feature). Este también genera pruebas en base a la probabilidad y no máquinas totalmente probadas.
+En la parte programacional, EasyCrypt no posee bucles ni procesos recursivos, CertiCrypt si. En el caso de las evidencias generadas, EasyCrypt es parcial por no tener generadores de pruebas COQ (se esta buscando agregar esta característica). Este también genera pruebas en base a la probabilidad y no máquinas totalmente probadas.
 
 \begin{table}
   \caption{Comparación de EasyCrypt con CertiCrypt}
@@ -212,15 +212,15 @@ CryptHol crea su dominio semántico atraves de los principios de HOL y tiene la 
 
 Otra diferencia importante radica en las librerías disponibles. Como ya mencionamos, EasyCrypt no posee asistentes de pruebas, por lo tanto tiene librerias muy chicas que le permite razonar programas rápidamente, a diferencia de CryptHol que al estar enfocado en resolver matemática pura, necesita de librerías completas que son brindadas por Isabelle/HOL o COQ.
 
-En ambos programas la eficiencia de computos no puede ser expresada formalmente porque sus locas identifican términos hasta computos, por ejemplo, ($\lambda$x. x+x) no puede ser distinguido de el valor 2.\cite{article6}
+En ambos programas la eficiencia de cómputos no puede ser expresada formalmente porque sus locas identifican términos hasta computos, por ejemplo, ($\lambda$x. x+x) no puede ser distinguido de el valor 2.\cite{article6}
 
 \begin{table}
   \caption{Comparación de EasyCrypt con CryptHOL}
   \label{tab:simple2}
   \centering
-  \begin{tabular}{ |p{4cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|  }
+  \begin{tabular}{ |p{4cm}|p{4cm}|p{2cm}|p{2cm}|  }
  \hline
- Cryptographic Algorithm & Security property & CryptHOL & EasyCrypt\\\cline{1-4}
+ Algoritmo Criptográfico & Propiedad de Seguridad & CryptHOL & EasyCrypt\\\cline{1-4}
  \hline
  RP-RF switching lemma &  & 120 & 448\\
  Elgamal & IND-CPA & 49  & 68\\
@@ -242,7 +242,7 @@ EasyCrypt es una herramienta muy potente para probar problemas de seguridad, por
 \centerline{\emph{IND-CPA}}
 
 
-Hashed ElGamal es una variante de encriptacion ElGamal, la cual puede ser reducida a lo siguiente (Computational Diffie-Hellman) : Es difícil computar $g^{x*y}$ dado $g^x$ y $g^y$ donde x e y son eventos aleatorios uniformes dentro de $\mathbb{Z}_q$.
+Hashed ElGamal es una variante de encriptacion ElGamal, la cual puede ser reducida a lo siguiente (Computational Diffie-Hellman): Es difícil computar $g^{x*y}$ dado $g^x$ y $g^y$ donde x e y son eventos aleatorios uniformes dentro de $\mathbb{Z}_q$.
 Para esta prueba primero es necesario expresar los cinco ingredientes para el input de EasyCrypt:
 \begin{itemize}
 	\item Tipo, constantes y declaracioenes del operador.
@@ -257,19 +257,18 @@ El resultado de la prueba fue la siguiente: La reducción de código es sustanci
 
 
 \centerline{\emph{CMAC}}
-CMAC fue propuesto por Iwata y Kurosawa con el nombre de OMAC1, el cual cuenta co una prueba criptografica basada en juegos muy compleja. Luego se fue transformando hasta llegar al CBC-MAC (bloque cifrado en cadena-codigo de autentificacion del mensaje, o su nombre en ingles: cipher block chaining-message authentication code). En este, el mensaje es dividido en lista de bloques. Cada bloque es enmascado usando el resultado del cifrado de bloque anterior, con esta dependencia se asegura que si se cambia un bit  del mensaje, el resto cambiara inpredeciblemente.
+CMAC fue propuesto por Iwata y Kurosawa con el nombre de OMAC1, el cual cuenta co una prueba criptografica basada en juegos muy compleja. Luego se fue transformando hasta llegar al CBC-MAC (bloque cifrado en cadena-código de autentificación del mensaje, o su nombre en inglés: cipher block chaining-message authentication code). En este, el mensaje es dividido en lista de bloques. Cada bloque es enmascado usando el resultado del cifrado de bloque anterior, con esta dependencia se asegura que si se cambia un bit  del mensaje, el resto cambiara inpredeciblemente.
 
 Los MAC cuentan con con 3 algoritmos (generador de clave, tageo y de verificación). Estos deben cumplir con las siguientes características: 
 \begin{itemize}
 	\item Deben ser correctos,
 	\item Deben ser seguros y
-	\item Deben ser Determinísticos.
+	\item Deben ser determinísticos.
 \end{itemize}
 
 A diferencia de los BCB que solo requieren ser seguros.
 
 Para realizar la prueba de CMAC se necesita probar que:
-
 
 \centerline{\emph{ECBC es una MAC segura}}
 \centerline{$\land$}
@@ -280,30 +279,30 @@ Para realizar la prueba de CMAC se necesita probar que:
 \centerline{\emph{CMAC es computacionalmente indistinguible de FCBC}}
 
 \begin{itemize}
-	\item Seguridad ECBC: Se define como una nocion basada en juego, mediante el juego de colision de nombre, en donde el adversario $\mathcal{A}$ se le provee una lista de mensajes a su eleccion, antes de que la fusion hash f sea seleccionada de H. Este gana si contiene dos mensajes distinto con la misma imagen de h. Se dice que una funcion hash f es resistente a colision si la probabilidad es baja. Formalizando, la resistencia a colision de CBC-MAC es una familia de funciones hash indexada por un block cypher key. This yields a concrete bound on the security of ECBC. 
-	\item Seguridad FCBC: La seguridad FCBC es esquivalente a ECBC, esto es gracias a que la composicion de dos permutaciones aleatorias independientes quedan independientes de una de las permutaciones 
-	\item Seguridad XCBC: La prueba de XCBC es indistinguible de FCBC se basa en que un adversario con oraculo accede a dos permutaciones aleatorias independientes $x_1$ y $x_2$ no pueden ser distinguidas de los oraculos $\pi (\cdot)$ y $\pi (k \oplus \cdot)$ cuando $\pi$ es una permutacion aleatoria y k es elegida uniformly at random and independently from $\pi$
-	\item Seguridad CMAC: La idea de esta seguridad de prevenir que el adversario acceda directamente el bloquede de cifrado del oraculo anadiendo una variable aleatoria independiente.
+	\item Seguridad ECBC: Se define como una noción basada en juego, mediante el juego de colisión de nombre, en donde el adversario $\mathcal{A}$ se le provee una lista de mensajes a su elección, antes de que la función hash f sea seleccionada de H. Este gana si contiene dos mensajes distintos con la misma imagen de h. Se dice que una función hash f es resistente a colisión si la probabilidad es baja. Formalizando, la resistencia a la colisión de CBC-MAC es una familia de funciones hash indexada por un bloque de clave de cifrado. Esto produce un límite concreto en la seguridad de ECBC.
+	\item Seguridad FCBC: La seguridad FCBC es esquivalente a ECBC, esto es gracias a que la composición de dos permutaciones aleatorias independientes quedan independientes de una de las permutaciones 
+	\item Seguridad XCBC: La prueba de XCBC es indistinguible de FCBC. Se basa en que un adversario con oráculo accede a dos permutaciones aleatorias independientes $x_1$ y $x_2$ no pueden ser distinguidas de los oráculos $\pi (\cdot)$ y $\pi (k \oplus \cdot)$ cuando $\pi$ es una permutación aleatoria y k es elegida uniforme al azar e independientemente de $\pi$.
+	\item Seguridad CMAC: La idea de esta seguridad de prevenir que el adversario acceda directamente el bloquede de cifrado del oráculo anadiendo una variable aleatoria independiente.
 \end{itemize}
-El caso fue exitoso ya que probó que CMAC es computacionalmente es indistinguible de FCBC, asi también los lemas utilizado para la prueba.\cite{article5}
+El caso fue exitoso ya que probó que CMAC es computacionalmente es indistinguible de FCBC, así también los lemas utilizado para la prueba.\cite{article5}
 
 
 \centerline{\emph{Cramer-Shoup Cryptosystem}}
 
-Cramer-Shoup Cryptosystem es una encripcion de llave publica basada en la encrypcion ElGramal,este caso se hizo famoso ya que fue el primer encriptador asimétrico eficiente. La idea es probar que es seguro contra ataques de texto cifrado elegido adaptativos (o en ingles adaptive chosen-ciphertext).
+Cramer-Shoup Cryptosystem es una encripción de llave pública basada en la encriptación ElGramal, este caso se hizo famoso ya que fue el primer encriptador asimétrico eficiente. La idea es probar que es seguro contra ataques de texto cifrado elegido adaptativos (o en inglés Adaptive Chosen-Ciphertext).
 Mediante las siguientes pruebas se puede probar el teorema de Cramer-Shoup:
 \begin{definition}{Target Collision-Resistance}
 
-Let $H_k : A \rightarrow B_{k∈K}$ be a keyed family of hash
+Sea $H_k : A \rightarrow B_{k∈K}$ be a keyed family of hash
 functions. The advantage of an adversary $\mathcal{C}$ against the target collision-resistance of H is defined as
 
 	\[Adv_{TCR}^\mathcal{C} = Pr[TCR:H_k(x) = H_k (y) \land x \neq y]\]
-	where the experiment TCR is defined by means of the following game:
+	donde el experimento TCR se define mediante el siguiente juego:
 	\[Game TCR : x \leftarrow C 1 ( ); k \leftarrow K; y \leftarrow \mathcal{C}(k)\]
 \end{definition}
 
 \begin{definition}{CCA-advantage}
-Let ($\mathcal{K}\mathcal{G}$, $\mathcal{E}$, $\mathcal{D}$) be an asymmetric encryption scheme. The CCA-advantage of an adversary $\mathcal{A}$ limited to $q_\mathcal{D}$ decryption queries against the adaptive chosen-ciphertext security of the scheme is defined as
+Let ($\mathcal{K}\mathcal{G}$, $\mathcal{E}$, $\mathcal{D}$) un asymmetric encryption scheme. The CCA-advantage of an adversary $\mathcal{A}$ limited to $q_\mathcal{D}$ decryption queries against the adaptive chosen-ciphertext security of the scheme is defined as
 
 \[Adv_{CCA}^\mathcal{A} (q_\mathcal{D})= |Pr[IND-CCA: b=b'] - \frac{1}{2}\]
 \end{definition}
@@ -321,9 +320,9 @@ La prueba fue exitosa para cualquier consulta de descifrado (decryption query) b
 \section{Conclusión}
 
 
-Easycrypt es un programa que para su objetivo es muy eficiente ya que las verficaciones que brinda son mucho mas sencillas. Las actualizaciones que esperan sumarle, agrandarian la calidad y espectro de las respuestas que brinda, como por ejemplo agregarle asistentes como COQ. En comparacion a los otros programas y con la gran necesidad de seguridad en estos dias, EasyCrypt es un excelente programa con mucho potencial de mejorar.
+Easycrypt es un programa que para su objetivo es muy eficiente ya que las verficaciones que brinda son mucho mas sencillas. Las actualizaciones que esperan sumarle, agrandarian la calidad y espectro de las respuestas que brinda, como por ejemplo agregarle asistentes como COQ. En comparación a los otros programas y con la gran necesidad de seguridad en estos dias, EasyCrypt es un excelente programa con mucho potencial de mejorar.
 
-A nivel de usuario, lo unico positivo que tiene es que es sencillo instalarlo, porque la interfaz grafica propia de Easycrypt no es facil de usar ni intuitiva y Emacs tiene mas facilidades pero aun asi los archivos a analizar no son nada sencillo y la informacion no abunda en la parte practica.
+A nivel de usuario, lo único positivo que tiene es que es sencillo instalarlo, porque la interfaz gráfica propia de Easycrypt presenta dificultades para su uso y no es intuitiva. Con respecto a Emacs, podemos mencionar que este tiene más facilidades pero aun así los archivos a analizar no son nada sencillos y la información no abunda en la parte práctica probablemente porque aún es una herramienta nueva y en constante cambio.
 
 \section{Cosas que ver/hacer}
 \begin{itemize}
