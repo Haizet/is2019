@@ -239,10 +239,10 @@ No se encontró el hardware utilizado para la siguiente prueba.
 EasyCrypt es una herramienta muy potente para probar problemas de seguridad, por lo tanto los siguientes casos de estudio hacen referencia en mayor medida a la criptografía.
 
 
-\centerline{\emph{IND-CPA}}
+\centerline{\emph{Hashed ElGamal}}
 
 
-Hashed ElGamal es una variante de encriptación ElGamal, la cual puede ser reducida a lo siguiente (Computational Diffie-Hellman): es difícil computar $g^{x*y}$ dado $g^x$ y $g^y$ donde x e y son eventos aleatorios uniformes dentro de $\mathbb{Z}_q$.
+Hashed ElGamal es una variante de encriptación ElGamal con seguridad IND-CPA, la cual puede ser reducida a lo siguiente (Computational Diffie-Hellman): es difícil computar $g^{x*y}$ dado $g^x$ y $g^y$ donde x e y son eventos aleatorios uniformes dentro de $\mathbb{Z}_q$.
 Para esta prueba primero es necesario expresar los cinco ingredientes para el input de EasyCrypt:
 \begin{itemize}
 	\item Tipo, constantes y declaracioenes del operador.
