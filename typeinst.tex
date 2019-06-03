@@ -19,6 +19,7 @@
 
 \usepackage{amssymb}
 \setcounter{tocdepth}{3}
+\usepackage{graphicx}
 \usepackage{url}
 \usepackage{fancyvrb}
 \usepackage{hyperref}
@@ -176,6 +177,12 @@ Easycrypt utiliza sistemas de reducción abstractos sobre todo con el cálculo l
 
 Las respuestas que brinda Easycrypt son esquemas de pruebas que incrementan la confianza en las respuestas produciendo pruebas verificables independientes. También permite generar pruebas en formato COQ, para que luego el usuario si lo desea, las ejecute en dicho formato con dicho programa.\cite{article4}
 
+\begin{figure}
+\includegraphics[width=\textwidth]{fig1.png}
+\caption{A figure caption is always placed below the illustration.
+Please note that short captions are centered, while long ones are
+justified by the macro package automatically.} \label{fig1}
+\end{figure}
 
 
 \section{Comparación de programas.}
@@ -256,29 +263,6 @@ El resultado de la prueba fue la siguiente: La reducción de código es sustanci
 
 
 
-\centerline{\emph{CMAC}}
-CMAC fue propuesto por Iwata y Kurosawa con el nombre de OMAC1, el cual cuenta con una prueba criptográfica basada en juegos muy compleja. Luego se fue transformando hasta llegar al CBC-MAC (bloque cifrado en cadena-código de autentificación del mensaje, o su nombre en inglés: cipher block chaining-message authentication code). En este, el mensaje es dividido en lista de bloques. Cada bloque es enmascado usando el resultado del cifrado de bloque anterior, con esta dependencia se asegura que si se cambia un bit  del mensaje, el resto cambiara inpredeciblemente.
-
-Los MAC cuentan con tres algoritmos (generador de clave, tagueo y de verificación). Éstos deben cumplir con las siguientes características: deben ser correctos, seguros y determinísticos, a diferencia de los BCB que solo requieren ser seguros.
-
-Para realizar la prueba de CMAC se necesita probar que:
-
-\centerline{\emph{ECBC es una MAC segura}}
-\centerline{$\land$}
-\centerline{\emph{FCBC es perfectamente indistinguible de ECBC}}
-\centerline{$\land$}
-\centerline{\emph{XCBC es computacionalmente indistinguible FCBC}}
-\centerline{$\land$}
-\centerline{\emph{CMAC es computacionalmente indistinguible de FCBC}}
-
-\begin{itemize}
-	\item Seguridad ECBC: se define como una noción basada en juego, mediante el juego de colisión de nombre, en donde al adversario $\mathcal{A}$ se le provee una lista de mensajes a su elección, antes de que la función hash f sea seleccionada de H. Éste gana si contiene dos mensajes distintos con la misma imagen de h. Se dice que una función hash f es resistente a colisión si la probabilidad es baja. Formalizando, la resistencia a la colisión de CBC-MAC es una familia de funciones hash indexada por un bloque de clave de cifrado. Esto produce un límite concreto en la seguridad de ECBC.
-	\item seguridad FCBC: La seguridad FCBC es esquivalente a ECBC, esto es gracias a que la composición de dos permutaciones aleatorias independientes quedan independientes de una de las permutaciones 
-	\item seguridad XCBC: La prueba de XCBC es indistinguible de FCBC. Se basa en que un adversario con oráculo accede a dos permutaciones aleatorias independientes $x_1$ y $x_2$ no pueden ser distinguidas de los oráculos $\pi (\cdot)$ y $\pi (k \oplus \cdot)$ cuando $\pi$ es una permutación aleatoria y k es elegida uniforme al azar e independientemente de $\pi$.
-	\item seguridad CMAC: La idea de esta seguridad de prevenir que el adversario acceda directamente el bloquede de cifrado del oráculo anadiendo una variable aleatoria independiente.
-\end{itemize}
-El caso fue exitoso ya que probó que CMAC es computacionalmente es indistinguible de FCBC, así como también los lemas utilizado para la prueba.\cite{article5}
-
 
 \centerline{\emph{Cramer-Shoup Cryptosystem}}
 
@@ -311,6 +295,28 @@ such that
 
 La prueba fue exitosa para cualquier consulta de descifrado (decryption query) bajo la condicion de u =! u'\cite{article3}
 
+\centerline{\emph{CMAC, Caso de estudio Elegido}}
+CMAC fue propuesto por Iwata y Kurosawa con el nombre de OMAC1, el cual cuenta con una prueba criptográfica basada en juegos muy compleja. Luego se fue transformando hasta llegar al CBC-MAC (bloque cifrado en cadena-código de autentificación del mensaje, o su nombre en inglés: cipher block chaining-message authentication code). En este, el mensaje es dividido en lista de bloques. Cada bloque es enmascado usando el resultado del cifrado de bloque anterior, con esta dependencia se asegura que si se cambia un bit  del mensaje, el resto cambiara inpredeciblemente.
+
+Los MAC cuentan con tres algoritmos (generador de clave, tagueo y de verificación). Éstos deben cumplir con las siguientes características: deben ser correctos, seguros y determinísticos, a diferencia de los BCB que solo requieren ser seguros.
+
+Para realizar la prueba de CMAC se necesita probar que:
+
+\centerline{\emph{ECBC es una MAC segura}}
+\centerline{$\land$}
+\centerline{\emph{FCBC es perfectamente indistinguible de ECBC}}
+\centerline{$\land$}
+\centerline{\emph{XCBC es computacionalmente indistinguible FCBC}}
+\centerline{$\land$}
+\centerline{\emph{CMAC es computacionalmente indistinguible de FCBC}}
+
+\begin{itemize}
+	\item Seguridad ECBC: se define como una noción basada en juego, mediante el juego de colisión de nombre, en donde al adversario $\mathcal{A}$ se le provee una lista de mensajes a su elección, antes de que la función hash f sea seleccionada de H. Éste gana si contiene dos mensajes distintos con la misma imagen de h. Se dice que una función hash f es resistente a colisión si la probabilidad es baja. Formalizando, la resistencia a la colisión de CBC-MAC es una familia de funciones hash indexada por un bloque de clave de cifrado. Esto produce un límite concreto en la seguridad de ECBC.
+	\item seguridad FCBC: La seguridad FCBC es esquivalente a ECBC, esto es gracias a que la composición de dos permutaciones aleatorias independientes quedan independientes de una de las permutaciones 
+	\item seguridad XCBC: La prueba de XCBC es indistinguible de FCBC. Se basa en que un adversario con oráculo accede a dos permutaciones aleatorias independientes $x_1$ y $x_2$ no pueden ser distinguidas de los oráculos $\pi (\cdot)$ y $\pi (k \oplus \cdot)$ cuando $\pi$ es una permutación aleatoria y k es elegida uniforme al azar e independientemente de $\pi$.
+	\item seguridad CMAC: La idea de esta seguridad de prevenir que el adversario acceda directamente el bloquede de cifrado del oráculo anadiendo una variable aleatoria independiente.
+\end{itemize}
+El caso fue exitoso ya que probó que CMAC es computacionalmente es indistinguible de FCBC, así como también los lemas utilizado para la prueba. Asi tambien CMAC permitio agregarle mas estructura a EasyCrypt y ayudarla en su crecimiento.\cite{article5}
 
 \section{Conclusión.}
 
