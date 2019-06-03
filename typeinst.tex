@@ -212,7 +212,7 @@ CryptHol crea su dominio semántico atraves de los principios de HOL y tiene un 
 
 Otra diferencia importante radica en las librerías disponibles. Como ya mencionamos, EasyCrypt no posee asistentes de pruebas, por lo tanto tiene librerías muy chicas que le permite razonar programas rápidamente, a diferencia de CryptHol, que al estar enfocado en resolver matemática pura, necesita de librerías completas que son brindadas por Isabelle/HOL o COQ.
 
-En ambos programas la eficiencia de cómputos no puede ser expresada formalmente porque sus locas identifican términos hasta computos, por ejemplo, ($\lambda$x. x+x) no puede ser distinguido del valor 2.\cite{article6}
+En ambos programas la eficiencia de cómputos no puede ser expresada formalmente porque sus logicas identifican términos hasta computos, por ejemplo, ($\lambda$x. x+x) no puede ser distinguido del valor 2.\cite{article6}
 
 \begin{table}
   \caption{Comparación de EasyCrypt con CryptHOL}
@@ -249,7 +249,7 @@ Para esta prueba primero es necesario expresar los cinco ingredientes para el in
 	\item Axiomas.
 	\item Defiiciones del Juego.
 	\item Juicios en pRHL.
-	\item Claims de la probabildad. Aca claims no queda bien reclamaciones
+	\item Afirmaciones de probabildad.
 \end{itemize}
 
 El resultado de la prueba fue la siguiente: La reducción de código es sustancial tanto que es 5 veces más chica que la inicial asi también como el desempeno de EasyCrypt (medido en tiempo) fue de 33 segundos.\cite{article3}
@@ -284,6 +284,7 @@ El caso fue exitoso ya que probó que CMAC es computacionalmente es indistinguib
 
 Cramer-Shoup Cryptosystem es una encripción de llave pública basada en la encriptación ElGramal. Este caso se hizo famoso ya que fue el primer encriptador asimétrico eficiente. La idea es probar que es seguro contra ataques de texto cifrado elegido adaptativos (o en inglés Adaptive Chosen-Ciphertext).
 Mediante las siguientes pruebas se puede probar el teorema de Cramer-Shoup:
+\emph{Las siguientes definiciones y teoremas fueron citados en su idioma de origen, con la finalidad de no perder su verdadero significado.}
 \begin{definition}{Target Collision-Resistance}
 
 Sea $H_k : A \rightarrow B_{k∈K}$ be a keyed family of hash
@@ -300,13 +301,14 @@ Let ($\mathcal{K}\mathcal{G}$, $\mathcal{E}$, $\mathcal{D}$) un asymmetric encry
 \[Adv_{CCA}^\mathcal{A} (q_\mathcal{D})= |Pr[IND-CCA: b=b'] - \frac{1}{2}\]
 \end{definition}
 
-\begin{theorem}{Seguridad de Cramer-Shoup}
+\begin{theorem}{Cramer-Shoup Security}
 Let $\mathcal{A}$ be an adversary against the IND-CCA security
 of Cramer-Shoup limited to $q_\mathcal{D}$ decryption queries. Then, there exists an algorithm $\mathcal{B}$ for solving the
 DDH problem in $\mathcal{G}$ and an adversary $\mathcal{C}$ against the target collision-resistance of the hash function H
 such that
 \[Adv_{CCA}^\mathcal{A}(q_\mathcal{D}) \leq Adv_{DDH}^\mathcal{B} + Adv_{TCR}^\mathcal{C} + \frac{q_\mathcal{D}^4}{q^4} + \frac{q_\mathcal{D} + 2}{q}\]
 \end{theorem}
+
 La prueba fue exitosa para cualquier consulta de descifrado (decryption query) bajo la condicion de u =! u'\cite{article3}
 
 
@@ -317,15 +319,7 @@ Easycrypt es un programa que, para su objetivo, es muy eficiente ya que las verf
 
 A nivel de usuario, lo único positivo que tiene es que es sencillo instalarlo, porque la interfaz gráfica propia de Easycrypt presenta dificultades para su uso y no es intuitiva. Con respecto a Emacs, podemos mencionar que este tiene más facilidades pero aun así los archivos a analizar no son nada sencillos y la información no abunda en la parte práctica probablemente porque aún es una herramienta nueva y en constante cambio.
 
-\section{Cosas que ver/hacer}
-\begin{itemize}
-	\item Objetivo de la herrramienta muy liviano
-	\item AT, la respuesta que brinda la correji, fijate que te parece
-	\item en seguridad ECBC hay una oracion en ingles qeu nose como traducirla y en XCBC tambien
-	\item En cramer puse definiciones y teoremas en ingles, no quiero traducirlos porque seguro algo mal hago nose que queres hacer al respecto
-	\item los casos de estudios sin contar CMAC los otros estan, depende cual elijamos lo agrando pero deberian estar mas o menos bien
-	\item Revisar ortografia
-\end{itemize}
+
 \section{Referencias}
 
 \begin{thebibliography}{1}
