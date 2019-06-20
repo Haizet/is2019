@@ -207,7 +207,7 @@ En la parte programacional, EasyCrypt no posee procesos recursivos, CertiCrypt\c
 
 Hardware para esta prueba: procesador 2.8GHz Intel Core 2 Duo con 4GB de RAM en Mac OS X 10.6.7.\cite{article3}
 
-Con el gráfico \ref{tab:simple1} anterior podemos concluir que la mayor diferencia entre estos dos programas es la rapidez y facilidad en la construcción de pruebas.
+Con el Cuadro\ref{tab:simple1} anterior podemos concluir que la mayor diferencia entre estos dos programas es la rapidez y facilidad en la construcción de pruebas.
 
 \centerline{\textbf{{\emph{CRYPTHOL}}}}
 
@@ -235,7 +235,7 @@ En ambos programas la eficiencia de cómputos no puede ser expresada formalmente
 \end{table}
 
 
-El cuadro\ref{tab:simple2} anterior es una comparacion entre EasyCrypt y CryptHOL probando tres algoritmos criptograficos.No se encontró el hardware utilizado para la comparacion de Cuadro2\ref{tab:simple2}.
+El Cuadro\ref{tab:simple2} anterior es una comparacion entre EasyCrypt y CryptHOL probando tres algoritmos criptograficos.No se encontró el hardware utilizado para la comparacion de Cuadro2\ref{tab:simple2}.
 
 
 
@@ -257,7 +257,7 @@ Para esta prueba primero es necesario expresar los cinco ingredientes para el in
 	\item Afirmaciones de probabildad.
 \end{itemize}
 
-El resultado de la prueba fue que la reducción de código es sustancial tanto que es 5 veces más chica que la inicial asi también como el desempeño de EasyCrypt (medido en tiempo) fue de 33 segundos.\cite{article3}
+El resultado de la prueba fue que la reducción de código es sustancial tanto que es 5 veces más chica que la inicial asi también como el desempeño de EasyCrypt (medido en tiempo) fue de 33 segundos, como se muestra en el Cuadro\ref{tab:simple1}.\cite{article3}
 
 
 
@@ -265,23 +265,8 @@ El resultado de la prueba fue que la reducción de código es sustancial tanto q
 \centerline{\textbf{{\emph{Cramer-Shoup Cryptosystem}}}}
 
 Cramer-Shoup Cryptosystem es una encripción de llave pública basada en la encriptación ElGramal. Este caso se hizo famoso ya que fue el primer encriptador asimétrico eficiente. La idea es probar que es seguro contra ataques de texto cifrado elegido adaptativos (o en inglés Adaptive Chosen-Ciphertext).
-Mediante las siguientes pruebas se puede probar el teorema de Cramer-Shoup:
-\emph{Las siguientes definiciones y teoremas fueron citados en su idioma de origen, con la finalidad de no perder su verdadero significado.}
-\begin{definition}{Target Collision-Resistance}
-
-Sea $H_k : A \rightarrow B_{k∈K}$ be a keyed family of hash
-functions. The advantage of an adversary $\mathcal{C}$ against the target collision-resistance of H is defined as
-
-	\[Adv_{TCR}^\mathcal{C} = Pr[TCR:H_k(x) = H_k (y) \land x \neq y]\]
-	donde el experimento TCR se define mediante el siguiente juego:
-	\[Game TCR : x \leftarrow C 1 ( ); k \leftarrow K; y \leftarrow \mathcal{C}(k)\]
-\end{definition}
-
-\begin{definition}{CCA-advantage}
-Let ($\mathcal{K}\mathcal{G}$, $\mathcal{E}$, $\mathcal{D}$) un asymmetric encryption scheme. The CCA-advantage of an adversary $\mathcal{A}$ limited to $q_\mathcal{D}$ decryption queries against the adaptive chosen-ciphertext security of the scheme is defined as
-
-\[Adv_{CCA}^\mathcal{A} (q_\mathcal{D})= |Pr[IND-CCA: b=b'] - \frac{1}{2}\]
-\end{definition}
+Para probar el teorema de Cramer-Shoup, primero se debe probar las definiciones de \href{https://en.wikipedia.org/wiki/Collision_resistance}{\emph{Resistencia a la colision de objetivo(TCR)}} y \href{https://en.wikipedia.org/wiki/Advantage_(cryptography)}{\emph{CCA-Advantaage}}.
+\emph{El siguiente teoremas fue citados en su idioma de origen, con la finalidad de no perder su verdadero significado.}
 
 \begin{theorem}{Cramer-Shoup Security}
 Let $\mathcal{A}$ be an adversary against the IND-CCA security
