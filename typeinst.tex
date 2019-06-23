@@ -60,7 +60,7 @@ Vanetta Mariano
 % the affiliations are given next; don't give your e-mail address
 % unless you accept that it will be published
 \institute{Universidad Nacional de Córdoba\\
-Facultad de Matemática, Física, Astronomía y Computación\\
+Facultad de Matemática, Astronomía, Física y Computación\\
 \mailsa\\
 \mailsb\\
 \url{https://www.famaf.unc.edu.ar/}}
@@ -101,7 +101,7 @@ La versión actual de EasyCrypt (versión 1.0), lanzada el 10 Octubre 2017, aún
 \section{Objetivo de la herramienta} 
 Uno de los componentes básicos de prácticamente cualquier sistema de seguridad es la criptografía. Su utilidad no se limita a impedir que una persona no autorizada con acceso a datos privados pueda entenderlos (cifrado), si no que también cubre otras necesidades como la verificación de la identidad (autenticación) o la de poder garantizar de que una información no ha sido alterada (integridad). Por lo general estas primitivas criptográficas basan su seguridad en la dificultad computacional que tiene resolver ciertos problemas. Para estar seguros de que los mecanismos criptográficos realmente cumplen con su cometido, es necesario someterlos a un proceso de verificación riguroso. El objetivo es poder razonar sobre ellos y demostrar que cumplen ciertas propiedades de seguridad. 
 
-Esta herramienta apunta a solucionar problemas de seguridad. EasyCrypt usa varios lenguajes de programación distintos a la hora de evaluar un código fuente. Esta es una herramienta que se utiliza en las etapas de desarrollo y testing de software. Funciona como un intérprete de un lenguaje de propósito general y de forma interactiva: cuando se le proporciona un archivo a evaluar, lo recorre de arriba hacia abajo comprobando que todos los pasos de las demostraciones son correctos. Usando Proof General, un modo de editor de texto EMACS, es posible editar un archivo mientras el intérprete lo va emulando sobre la marcha, ayudando y guiando al usuario a medida que éste desarrolla cada demostración. 
+Esta es una herramienta que se utiliza en las etapas de desarrollo y testing de software. Funciona como un intérprete de un lenguaje de propósito general y de forma interactiva: cuando se le proporciona un archivo a evaluar, lo recorre de arriba hacia abajo comprobando que todos los pasos de las demostraciones son correctos. Usando Proof General, un modo de editor de texto EMACS, es posible editar un archivo mientras el intérprete lo va emulando sobre la marcha, ayudando y guiando al usuario a medida que éste desarrolla cada demostración. 
 
 \section{Descripción de la herramienta del lado del usuario}
 
@@ -112,10 +112,19 @@ EasyCrypt también se utiliza en la terminal de comando y tiene un funcionamient
 \section{Aspectos técnicos}
 EasyCrypt trabaja con enfoque basado en juegos, cuyos principales actores son los ADVERSARIOS, los cuales son procesos Abstractos y los ORÁCULOS, que son procesos definidos. La herramienta contiene variables globales y una colección de los procesos ya mencionados.
 
-Éste posee 4 caracteristicas principales:
+Ésta posee 5 caracteristicas principales:
 \begin{itemize}
-	\item \textbf{Lenguaje de programacion}:
-El lenguaje utilizado es pWhile el cual es de tipado fuerte, imperativo probabilistico:
+	\item \textbf{Lenguaje de especificación}:
+EasyCrypt usa varios lenguajes de programación distintos a la hora de evaluar un código fuente. 
+
+\begin{itemize}
+		\item \textbf{Lenguaje de expresiones}:
+El lenguaje principal de especificación de EasyCrypt es el de las expresiones, que define una serie de \textbf{tipos} (conjunto de valores) y \textbf{operadores} sobre ellos. 	
+	
+		\item \textbf{Lenguaje de expresiones probabilísticas}:
+Para poder razonar sobre distribuciones de probabilidad, EasyCrypt proporciona un tipo 'a distr que representa sub-distribuciones discretas sobre 'a. 
+		\item \textbf{Lenguaje pWhile}:		
+Los lenguajes de expresiones a menudo son inadecuados para definir juegos y otras estructuras de datos como esquemas de cifrado u oráculos, debido a la necesidad de representar algoritmos secuenciales, entidades con estados, etc. Para ello, EasyCrypt implementa este lenguaje.
 
 \begin{Verbatim}
 	C ::= skip		 nop
@@ -128,6 +137,15 @@ El lenguaje utilizado es pWhile el cual es de tipado fuerte, imperativo probabil
 Donde V = {variables identificadora}, P = {nombres de procesos},
  E = {expresiones de prueba}, DE ={set de expresiones probabilisticas}
 \end{Verbatim}
+\end{itemize}
+
+	\item \textbf{Lenguajes de demostración}:
+\begin{itemize}
+		\item \textbf{Juicios}:
+Los juicios son proposiciones que se pueden realizar en EasyCrypt y tienen asociado un valor dev verdad (pueden ser ciertos o falsos). Para demostrar su veracidad, un juicio deberá demostrarse usando el lenguaje de tácticas. Además de los juicios expresados en lógica de primer orden, EasyCrypt cuenta con diversos tipos de juicios derivados de la Lógica de Hoare que se usan para razonar sobre a ejecución de programas.  
+		\item \textbf{Tácticas}:
+Para demostrar juicios, EasyCrypt cuenta con un lenguaje basado en tácticas. Una demostración consiste en una secuencia de tácticas que se van ejecutando iterativamente, donde cada táctica implica una transformación sintáctica al \textbf{objetivo} actual (la fórmula que se está demostrando) hasta que el último resuelve finalmente el objetivo.
+\end{itemize}
 
 	\item \textbf{Semántica Denotacional}:
 Estos programas son interpretados como funciones, que se mapean en la memoria.
